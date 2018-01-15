@@ -1,0 +1,51 @@
+<mvc:View controllerName="zn11_form.controller.Route" xmlns:f="sap.ui.layout.form" class="sapUiSizeCompact" height="100%"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:commons="sap.ui.commons"
+	xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:tnt="sap.tnt" xmlns="sap.m">
+		<Page
+		showHeader="false"
+		showNavButton="false"
+		>
+		<content>
+			<Page
+				id="sideContentContainer"
+				showHeader="false"
+				showNavButton="false">
+				<l:DynamicSideContent
+					id="DynamicSideContent"
+					class="sapUiDSCExplored sapUiContentPadding"
+					containerQuery="true"
+					equalSplit="true"
+					breakpointChanged="updateToggleButtonState">
+					<l:mainContent>
+						<VBox>
+							<Image src="img/login_n11.jpg" width="100%"/>
+						</VBox>
+					</l:mainContent>
+					<l:sideContent>
+		<VBox>			
+			<Panel>
+			<Title level="H1" text="Process Management Systems" class="classTitlePanel" />
+			</Panel>
+			<Panel  class="classLoginPanel" id="loginPanel">
+				<Label class="labelLogin" text="User" width="30%"/>
+				<Input class="inputForm"  id="kardNo" value="" width="50%"/>
+				<Label class="labelLogin" text="Password" width="30%"/>
+				<Input class="inputForm"  id="sifre" value="" type="Password" width="50%"></Input>
+				
+				<VBox>
+				<Button icon="sap-icon://visits" id="btnLogin" press="onLogin" text="Logon"  class="btnLog"/>
+				</VBox>
+				
+			</Panel>
+				
+				
+			</VBox>
+			
+					</l:sideContent>
+				</l:DynamicSideContent>
+			</Page>
+		</content>
+	</Page>
+		
+</mvc:View>

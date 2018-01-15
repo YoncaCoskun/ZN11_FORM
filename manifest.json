@@ -1,0 +1,246 @@
+{
+	"_version": "1.5.0",
+	"sap.app": {
+		"id": "zn11_form",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "zn11_form.view.App",
+			"type": "XML"
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewPath": "zn11_form.view",
+				"controlId": "rootControl",
+				"controlAggregation": "pages",
+				"viewType": "XML"
+			},
+			"routes": [
+				{
+					"name": "Route",
+					"pattern": "",
+					"target": "Route"
+				},
+				{
+					"name": "Home",
+					"pattern": "Home",
+					"target": "Home"
+				},
+				{
+					"name": "sendItemList",
+					"pattern": "sendItemList",
+					"target": "sendItemList"
+				},
+				{
+					"name": "manBudget",
+					"pattern": "manBudget",
+					"target": "manBudget"
+				},
+				{
+					"name": "resendBudget",
+					"pattern": "resendBudget",
+					"target": "resendBudget"
+				},
+				{
+					"name": "takeOBudget",
+					"pattern": "takeOBudget",
+					"target": "takeOBudget"
+				},
+				{
+					"name": "manPayment",
+					"pattern": "manPayment",
+					"target": "manPayment"
+				},
+				{
+					"name": "resendPayment",
+					"pattern": "resendPayment",
+					"target": "resendPayment"
+				},
+				{
+					"name": "takeOPayment",
+					"pattern": "takeOPayment",
+					"target": "takeOPayment"
+				},
+				{
+					"name": "manExpense",
+					"pattern": "manExpense",
+					"target": "manExpense"
+				},
+				{
+					"name": "resendExpense",
+					"pattern": "resendExpense",
+					"target": "resendExpense"
+				},
+				{
+					"name": "takeOExpense",
+					"pattern": "takeOExpense",
+					"target": "takeOExpense"
+				},
+				{
+					"name": "SendItemBaf",
+					"pattern": "SendItemBaf",
+					"target": "SendItemBaf"
+				},
+				{
+					"name": "SendItemPaf",
+					"pattern": "SendItemPaf",
+					"target": "SendItemPaf"
+				}
+			],
+			"targets": {
+				"Route": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Route"
+				},
+				"Home": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Home"
+				},
+				"sendItemList": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "sendItemList"
+				},
+				"manBudget": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "manBudget"
+				},
+				"resendBudget": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "resendBudget"
+				},
+				"takeOBudget": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "takeOBudget"
+				},
+				"manPayment": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "manPayment"
+				},
+				"resendPayment": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "resendPayment"
+				},
+				"takeOPayment": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "takeOPayment"
+				},
+				"manExpense": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "manExpense"
+				},
+				"resendExpense": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "resendExpense"
+				},
+				"takeOExpense": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "takeOExpense"
+				},
+				"SendItemBaf": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "SendItemBaf"
+				},
+				"SendItemPaf": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "SendItemPaf"
+				}
+			}
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.f": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "zn11_form.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zn11_bpm_onay/webcontent",
+		"_version": "1.1.0"
+	}
+}

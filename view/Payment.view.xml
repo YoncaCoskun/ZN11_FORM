@@ -1,0 +1,404 @@
+<mvc:View xmlns:f="sap.ui.layout.form" class="sapUiSizeCompact" controllerName="zn11_form.controller.Payment" height="100%"
+      xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:commons="sap.ui.commons" xmlns:core="sap.ui.core"
+      xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns="sap.m">
+      <OverflowToolbar>
+            <Button icon="sap-icon://paper-plane" text="Send" type="Accept" press="sendAcceptAction">
+            <layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+            </Button>
+            <Button icon="sap-icon://sys-cancel" text="Cancel" type="Reject">
+                  <layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+            </Button>
+      </OverflowToolbar>
+      <IconTabBar class="sapUiResponsiveContentPadding" expanded="{device]/isNoPhone}">
+            <items>
+                  <IconTabFilter text="DOCUMENT">
+                        <Button icon="sap-icon://print" text="Print the document"/>
+                        <Button icon="sap-icon://notes" text="Notes"/>
+                        <Button icon="sap-icon://save" text="Save Changes"/>
+                        <Panel class="sapUiSmallMargin panelContainer generalLabelFont generalLabelFontUi" expandable="false" width="95%">
+                              <headerToolbar>
+                                    <Toolbar class="box-header">
+                                          <core:Icon class="size1 icon-shadow" color="#FFF" src="sap-icon://user-edit"/>
+                                          <ToolbarSeparator/>
+                                          <Title class="approvalText" text="Payment Approval"/>
+                                    </Toolbar>
+                              </headerToolbar>
+                              <content>
+                                    <Panel class="panelBottom" id="panelFirs" width="auto">
+                                          <content>
+                                                <ImageContent class="imageLogo" src="img/logo-n11-large.png"></ImageContent>
+                                          </content>
+                                    </Panel>
+                                    <Panel class="panelBottom" id="panelFirstContainerPayment" width="auto">
+                                          <headerToolbar>
+                                                <Toolbar height="3rem">
+                                                      <Title class="boldText" text="Form Details"/>
+                                                      <!--<ImageContent class="imageLogo" src="img/n11_logo.png"></ImageContent>-->
+                                                </Toolbar>
+                                          </headerToolbar>
+                                          <content>
+                                                <VBox class="sapUiSmallMargin">
+                                                      <f:SimpleForm columnsXL="3" emptySpanM="0" columnsM="2" columnsL="2" editable="true" emptySpanL="0" emptySpanXL="0" labelSpanL="4"
+                                                            labelSpanM="4" labelSpanXL="4" layout="ResponsiveGridLayout" maxContainerCols="3">
+                                                            <f:content>
+                                                                  <core:Title/>
+                                                                  <Label text="Request Owner"/>
+                                                                  <Input class="inputForm" value="" id="PayrequestOwner" enabled="false"/>
+                                                                  <Label text="Department"/>
+                                                                  <Input class="inputForm" value="" id="Paydepartment" enabled="false"/>
+                                                                  <Label text="Title"/>
+                                                                  <Input class="inputForm" value="" id="Paytitle" enabled="false"/>
+                                                                  <Label text="Payment Form Type"/>
+                                                                  <Select width="100%"  id="PayFormType" change="selectChangeFormType">
+                                                                        <items>
+                                                                              <core:Item text="" key="empType"/>
+                                                                              <core:Item text="Payment" key="payType"/>
+                                                                              <core:Item text="Corparate Credit Card" key="corType"/>
+                                                                              <core:Item text="Self Employment Invoice" key="selfType"/>
+                                                                              <core:Item text="Charging Return Invoice" key="ChargType"/>                                                                              
+                                                                        </items>
+                                                                  </Select>
+                                                                  <core:Title/>
+                                                                  <Label text="Request Number"/>
+                                                                  <Input class="inputForm" value="" id="PayrequestNum" enabled="false"/>
+                                                                  <Label text="Request Date"/>
+                                                                  <Input class="inputForm" value="" id="PayrequestDate" enabled="false"/>
+                                                                  <HBox>
+                                                                        <Input class="inputForm" value="" id="PayrequestTime" enabled="false"/>
+                                                                  </HBox>
+                                                                  <Label text="Status"/>
+                                                                  <Input class="inputForm" value="" id="Paystatus" enabled="false"/>
+                                                            </f:content>
+                                                      </f:SimpleForm>
+                                                </VBox>
+                                          </content>
+                                    </Panel>
+                                    <Panel class="panelBottom buttonPosition" id="panelSecondContainerPayment" width="auto">
+                                          <headerToolbar>
+                                                <Toolbar height="3rem">
+                                                      <Title class="boldText" text="Invoice Details"/>
+                                                </Toolbar>
+                                          </headerToolbar>
+                                          <VBox class="sapUiSmallMargin">
+                                                <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                                                      <f:content>
+                                                            <core:Title/>
+                                                            <Label text="Invoice Date"/>
+                                                            <DatePicker class="inputForm" id="PayInvoiceDate" value="" width="100%" change="changeInvoice"/>
+                                                            <Label text="Expiry Date"/>
+                                                            <DatePicker class="inputForm" id="PayExpiryDate" value="" width="100%"  change="changeDate"/>
+                                                            <Label text="Currency Type" />
+                                                            <Select width="100%" id="PayCurrencyType" change="selectChangeCur">
+                                                                  <items>
+                                                                        <core:Item text=""/>
+                                                                        <core:Item text="TRY"/>
+                                                                        <core:Item text="USD"/>
+                                                                        <core:Item text="EUR"/>
+                                                                        <core:Item text="GBP"/>
+                                                                  </items>
+                                                            </Select>
+                                                            <Input class="inputForm" value="" width="100%" id="PayCurrency" enabled="false"/>
+                                                            <Label text="Invoice Number"/>
+                                                            <Input class="inputForm" value="" width="100%" id="PayInvoiceNum"/>
+                                                      </f:content>
+                                                </f:SimpleForm>
+                                          </VBox>
+                                    </Panel>
+                                    <Panel class="panelBottom buttonPosition" id="panelThirdContainerPayment" width="auto">
+                                          <headerToolbar>
+                                                <Toolbar height="3rem">
+                                                      <Title class="boldText" text="Budget Approval Form"/>
+                                                </Toolbar>
+                                          </headerToolbar>
+                                          <content>
+                                                <VBox class="sapUiSmallMargin">
+                                                      <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                                                            <f:content>
+                                                                  <Label text="Related Budget No"/>
+                                                                  <Table mode="SingleSelect" id="idPayRelatedNoTbl" inset="false">
+                                                                        <columns>
+                                                                              <Column width="6rem">
+                                                                                    <Text text="Budget Number"/>
+                                                                              </Column>
+                                                                              <Column demandPopin="true" minScreenWidth="Tablet" width="5rem">
+                                                                                    <Text text="Total BAF"/>
+                                                                              </Column>
+                                                                              <Column demandPopin="true" minScreenWidth="Tablet" width="5rem">
+                                                                                    <Text text="Used BAF"/>
+                                                                              </Column>
+                                                                              <Column demandPopin="true"  minScreenWidth="Tablet" width="6rem">
+                                                                                    <Text text="Used Amount (TRY)"/>
+                                                                              </Column>
+                                                                              <Column demandPopin="true"  minScreenWidth="Tablet" width="5rem">
+                                                                                    <Text text="Remaining Amount(TRY)"/>
+                                                                              </Column>
+                                                                        </columns>                                                  
+                                                                        <items>
+                                                                        </items>
+                                                
+                                                                  </Table>
+                                                                  <Label text=""/>
+                                                                        
+                                                                  <Bar>
+                                                                  <contentLeft>
+                                                                  <Button  press="onAddBudget" text="Add"/>
+                                                                  <Button  press="deleteItemPressed" text="Delete"/>                                        
+                                                                  </contentLeft>                                    
+                                                                        <contentMiddle>
+                                                                        <HBox>
+                                                                        <!--<Label  text="Used BAF:"/>-->
+                                                                 		<Input  value="" id="PayUsedBaf" enabled="false" class="classRelBudUsedBaf"/>
+                                                                        </HBox>                                          
+                                                                     	</contentMiddle>
+                                                                     	<contentRight>
+                                                                     	<HBox>
+                                                                        <!--<Label  text="Used Amount:"/>-->
+                                                                        <Input  value="" id="PayTotalAmount" enabled="false" class="classRelBudUsedAmnt"/>
+                                                                     	</HBox>
+                                                                     	</contentRight>
+                                                                  
+                                                                  </Bar>
+                                                                  
+                                                            </f:content>
+                                                      </f:SimpleForm>
+                                                </VBox>
+                                          </content>
+                                    </Panel>
+                                    <Panel class="panelBottom" id="panelPaymentAttach" width="auto">
+                                          <headerToolbar>
+                                                <Toolbar height="3rem">
+                                                      <Title class="boldText" text="Attachment"/>
+                                                </Toolbar>
+                                          </headerToolbar>
+                                          <content>
+                                                <l:VerticalLayout>
+            
+                  
+                  <Table id="ins" items="{/}">
+                  <headerToolbar>
+                  <Toolbar>
+                  <ToolbarSpacer/>
+                  <u:FileUploader
+                  id="fileuploadPayment"
+                  tooltip="Upload your file to the local server"
+                  uploadComplete="handleUploadComplete"
+                  change="handleValueChange"
+                  typeMissmatch="handleTypeMissmatch"
+                  style="Emphasized"
+                  fileType="txt,jpg"
+                  placeholder="Choose a file for Upload...">
+                        <u:parameters>
+                              <u:FileUploaderParameter
+                                    name="param1"
+                                    value="Foo"/>
+                              <u:FileUploaderParameter
+                                    name="param2"
+                                    value="bar"/>
+                        </u:parameters>
+                        <u:headerParameters>
+                              <u:FileUploaderParameter
+                                    name="headerParam1"
+                                    value="Foo"/>
+                              <u:FileUploaderParameter
+                                    name="headerParam2"
+                                    value="bar"/>
+                        </u:headerParameters>
+                  </u:FileUploader>
+                  </Toolbar>
+            </headerToolbar>
+                  <columns>
+                  
+                  <Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true">
+                        <Text text="File Name" />
+                  </Column>
+                        <Column width="50px"/>
+                  </columns>
+                  <items>
+                        <ColumnListItem>
+                        <cells>
+                              <Text text="{FileName}"/>
+                              <Button icon="sap-icon://delete" press="deleteRow" type="Reject"/>
+                        </cells>
+                  </ColumnListItem>
+                  </items>
+                  </Table>
+      </l:VerticalLayout>
+                                          </content>
+                                    </Panel>
+                                    <Panel class="panelBottom" id="panelFourthContainerPayment" width="auto">
+                                          <headerToolbar>
+                                                <Toolbar height="3rem">
+                                                      <Title class="boldText" text="Vendor Details"/>
+                                                </Toolbar>
+                                          </headerToolbar>
+                                          <content>
+                                                <VBox class="sapUiSmallMargin">
+                                                      <f:SimpleForm editable="false" layout="ResponsiveGridLayout">
+                                                            <f:content>
+                                                                  <Label text="Vendor Name"/>
+                                                                  <Input class="inputForm" id="PayVenName" liveChange="additionalInfoValidation" showSuggestion="true"
+                                                            showValueHelp="true" suggestionItems="{/SuppSet}" type="Text" valueHelpRequest="handleValueHelpVendor" valueState="{/supplierState}">
+                                                            <suggestionItems>
+                                                                  <core:Item key="" text="{path:'vendorModel>',
+                                                                              formatter: '.formatSupp'}" id="idTextSupp"/>
+                                                            </suggestionItems>
+                                                                  </Input>
+                                                                  <Label text="Vendor Address"/>
+                                                                  <TextArea value="" growing="true" width="100%" id="PayVenAdd" enabled="false"/>
+                                                                  <Label text="Vendor VKN/TCKN"/>
+                                                                  <Input class="inputForm"  value="" id="PayVenTC" enabled="false"/>
+                                                                  <Label text="Vendor Phone No"/>
+                                                                  <Input class="inputForm" value="" id="PayVenPhone" enabled="false"/>
+                                                                  <Label text="Contact Person"/>
+                                                                  <Input class="inputForm" value="" id="PayConPer" enabled="false"/>
+                                                                  <Label text="Vendor E-Mail"/>
+                                                                  <Input class="inputForm"  value="" id="PayVenMail" enabled="false"/>
+                                                                  <Label text="Bank Name"/>
+                                                                  <Input class="inputForm"  value="" id="PayBankName" enabled="false"/>
+                                                                  <Label text="IBAN Number"/>
+                                                                  <Input class="inputForm"  value="" id="PayIBAN" enabled="false"/>
+                                                            </f:content>
+                                                      </f:SimpleForm>
+                                                </VBox>
+                                          </content>
+                                    </Panel>
+                                    <Panel class="panelBottom buttonPosition" id="panelFifthContainerPayment" width="auto">
+                                          <headerToolbar>
+                                                <Toolbar height="3rem">
+                                                      <Title class="boldText" text="Payment Details"/>
+                                                </Toolbar>
+                                          </headerToolbar>
+                                          <content>
+                                                <VBox class="sapUiSmallMargin">
+                                                      <f:SimpleForm editable="true" layout="ResponsiveGridLayout" maxContainerCols="3">
+                                                            <f:content>
+                                                                  <Label text="Type"/>
+                                                                  <Select id="PayType" width="100%" change="selectPayType" >
+                                                                        <items>
+                                                                              <core:Item text="" id="idEmp"/>
+                                                                              <core:Item text="Invoice" id="idInv"/>
+                                                                              <core:Item text="Advance Payment" id="idAPayment"/>                                                                    
+                                                                        </items>
+                                                                  </Select>
+                                                                  <Label text="Subject"/>                                                  
+                                                                  <TextArea value="" growing="true" width="100%" id="PaySubject"/>
+                                                                  <Label text="Payment Type"/>
+                                                                  <RadioButtonGroup columns="2" select="clickPaymentType" id="paymentType">
+                                                                        <buttons>
+                                                                              <RadioButton id="RB-Down" text="Down Payment" key="DPayment" selected="true"/>
+                                                                              <RadioButton id="RB-Ins" text="Installment Payment" key="IPayment"/>
+                                                                        </buttons>
+                                                                  </RadioButtonGroup>
+                                                                  <Label text=""/>
+                                                                  <VBox>
+                                                                        <Table id="TableInsPay" inset="false" items="{/Products}">
+                                                                              <columns>
+                                                                                    <Column demandPopin="true" minScreenWidth="Tablet" width="2rem" >
+                                                                                          <Text text="Ins."/>
+                                                                                    </Column>
+                                                                                    <Column demandPopin="true" minScreenWidth="Tablet">
+                                                                                          <Text text="Expiry Date"/>
+                                                                                    </Column>
+                                                                                    <Column demandPopin="true" minScreenWidth="Tablet">
+                                                                                          <Text text="VAT Incl. Amount"/>
+                                                                                    </Column>
+                                                                                    <Column width="2rem"></Column>
+                                                                              </columns>
+                                                                              <items>
+                                                                  <ColumnListItem>
+                                    <cells>
+                                    <Text text="{installement}" />
+                                    <DatePicker class="inputForm" value="{expdt}"      displayFormat="dd/MM/yyyy" valueFormat="yyyyMMdd" id="requestDate"  />
+                                          <Input value="{vatInclAmount}" change="PTAmountChange"/>
+                                          <Button icon="sap-icon://delete" press="deleteRows" type="Reject"/>
+                                    </cells>
+                              </ColumnListItem>
+                                                                              </items>
+                                                                        </Table>
+                                                                        <HBox>
+                                                                              <Button text="Add" press="AddInstallment" id="InsAdd"></Button>
+<!--                                                                          <Button class="classButton" text="Delete" id="InsDelete"></Button> -->
+                                                                        </HBox>
+                                                                  </VBox>
+                                                                  <Label text="Installment Amount"/>
+                                                                  <commons:TextField class="inputForm" change="changePayType" value="" id="PayInsAmount" enabled="false"/>
+                                                                  <Label text="Comment"/>
+                                                                  <TextArea value="" growing="true" width="100%" id="PayComment"/>
+                                                                  <Label text="Payment Amount"/>
+                                                                  <Input class="inputForm" id="idPayAmount" value="" enabled="false"/>                                   
+                                                                  <Label text="VAT Amount"/>
+                                                                  <commons:TextField class="inputForm" change="changePayVAT" value="" id="PayidAmount"/>
+                                                                  <Label text="Withholding Tax"/>
+                                                                  <commons:TextField class="inputForm" change="changePayType" value="" id="PayidTax" enabled="false"/>
+                                                                  <Label text="VAT Incl. Amount"/>
+                                                                  <Input class="inputForm" id="PayidVatIncAmount" value="" liveChange="changeVatInc"/>
+                                                                  <Label text="Advance Information"/>
+                                                                  <Select width="100%" id="PayAdvanceInf" change="selectAdvanceInf">
+                                                                        <items>
+                                                                              <core:Item text="" id="anwEmp" key="anwEmp"/>
+                                                                              <core:Item text="YES" id="anwYes" key="anwYes"/>
+                                                                              <core:Item text="NO" id="anwNo" key="anwNo"/>
+                                                                        </items>
+                                                                  </Select>
+                                                                  <Label text="Advance Amount"/>
+                                                                  <Input class="inputForm" id="PayAdvAmount" liveChange="additionalInfoValidation" showSuggestion="true"
+                                                            showValueHelp="true" suggestionItems="{/AdvnSet}" type="Text" valueHelpRequest="handleValueHelpAdvanceAmount">
+                                                            <suggestionItems>
+                                                                  <core:Item key="" text="{path:'advanceModel>'}"/>
+                                                            </suggestionItems>
+                                                                  </Input>
+                                                                  <Label text="Net Payment Amount"/>
+                                                                  <Input class="inputForm" value="" id="PayNetAmount"/>
+                                                            </f:content>
+                                                      </f:SimpleForm>
+                                                </VBox>
+                                          </content>
+                                    </Panel>
+                              </content>
+                        </Panel>
+                  </IconTabFilter>
+                  <IconTabFilter text="FLOW">
+                        <List headerText="A List" showSeparators="Inner"></List>
+                  </IconTabFilter>
+                  <IconTabFilter text="MESSAGES">
+                        <Button icon="sap-icon://add" press="onAddMessageDialogPress" text="Add Message" id="idClickPay"/>
+                        <Table id="idPaymentMessage" inset="false" items="{ path: '/ProductCollection', sorter: { path: 'Name' } }">
+                              <columns>
+                                    <Column width="12em">
+                                          <Text text="Send Name"/>
+                                    </Column>
+                                    <Column width="12em">
+                                          <Text text="Send Date"/>
+                                    </Column>
+                                    <Column width="12em">
+                                          <Text text="Subject"/>
+                                    </Column>
+                                    <Column width="12em">
+                                          <Text text="Message"/>
+                                    </Column>
+                              </columns>
+                              <items>
+                                    <ColumnListItem>
+                                          <cells>
+                                                <Text text="{SendName}"/>
+                                                <Text text="{SendDate}"/>
+                                                <Text text="{Subject}"/>
+                                                <Text text="{Message}"/>
+                                          </cells>
+                                    </ColumnListItem>
+                              </items>
+                        </Table>
+                  </IconTabFilter>
+            </items>
+      </IconTabBar>
+      <OverflowToolbar>
+            <Button icon="sap-icon://paper-plane" text="Send" type="Accept" press="sendAcceptAction">
+            <layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+            </Button>
+            <Button icon="sap-icon://sys-cancel" text="Cancel" type="Reject">
+                  <layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+            </Button>
+      </OverflowToolbar>
+</mvc:View>

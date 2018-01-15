@@ -1,0 +1,153 @@
+<mvc:View
+	controllerName="zn11_form.controller.historyList"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+	<IconTabBar id="idIconTabBarStretchContentHistory"
+		stretchContentHeight="true"
+		backgroundDesign="Transparent"
+		applyContentPadding="false"
+		expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter text="Budget Approval Forms">
+				<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+					<Table id="idBudgetFormTableHistory" inset="false" items="{ path: '/', sorter: { path: 'BAFNO'}}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Budget Form" level="H2"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Number" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Owner" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Date" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="9em">
+								<Text text="Budget Form Type" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6em">
+								<Text text="Type" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Status" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem press="pressColumnBudget" type="Navigation">
+								<cells>
+									<Text text="{BAFNO}" />
+									<Text text="{PERNR}" />
+									<Text text="{RQDAT}" />
+									<Text text="Budget" />
+									<Text text="{TYPEE}" />
+									<Text text="{STATU}" />							
+								</cells>
+							</ColumnListItem>
+							
+						</items>
+			</Table>
+				</ScrollContainer>
+			</IconTabFilter>
+			<IconTabFilter text="Payment Approval Forms">
+				<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+					<Table id="idPaymentFormTableHistory" inset="false" >
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Payment Form" level="H2"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="6em">
+								<Text text="Process No" demandPopin="true" hAlign="Left" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Number" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Owner" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Date" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="9em">
+								<Text text="Payment Form Type" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="4em">
+								<Text text="Type" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Status" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="" />
+									<Text text="{BAFNO}" />
+									<Text text="{PERNR}" />
+									<Text text="" />
+									<Text text="Payment" />
+									<Text text="{TYPEE}" />
+									<Text text="{STATU}" />							
+								</cells>
+							</ColumnListItem>
+						</items>
+			</Table>
+				</ScrollContainer>
+			</IconTabFilter>
+			<IconTabFilter text="Expense Approval Forms">
+				<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+					<Table id="idExpenseFormTableHistory" inset="false">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Expense Form" level="H2"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="6em">
+								<Text text="Process No" demandPopin="true" hAlign="Left" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Number" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Owner" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Date" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="9em">
+								<Text text="Expense Form Type" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="4em">
+								<Text text="Type" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Status" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="" />
+									<Text text="{BAFNO}" />
+									<Text text="{PERNR}" />
+									<Text text="" />
+									<Text text="Expense" />
+									<Text text="{TYPEE}" />
+									<Text text="{STATU}" />						
+								</cells>
+							</ColumnListItem>
+						</items>
+			</Table>
+				</ScrollContainer>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</mvc:View>

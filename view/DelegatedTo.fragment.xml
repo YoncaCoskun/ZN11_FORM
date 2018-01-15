@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="User Selection"
+		class="sapUiPopupWithPadding"
+		items="{/d/results}"
+		search="_handleDelegatedToValueHelpSearch"
+		confirm="_handleDelegatedToValueHelpClose"
+		cancel="_handleDelegatedToValueHelpClose">
+		<StandardListItem
+			iconInset="false"
+			title="{DisplayName}"
+			info="{UniqueName}" />
+	</SelectDialog>
+</core:FragmentDefinition>

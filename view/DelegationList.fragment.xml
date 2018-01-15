@@ -1,0 +1,86 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout">
+	<Dialog title="Delegations List">
+		<content>
+			
+			<Table id="idDelegationListTable"
+		inset="true"
+		items="{
+			path: '/d/results',
+			sorter: {
+				path: 'Name'
+			}
+		}">
+		<headerToolbar>
+			<Toolbar>
+				<Title text="Delegations" level="H2"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column
+				width="15em">
+				<Text text="Full Name" />
+			</Column>
+			<Column
+			    width="6em"
+				minScreenWidth="Small"
+				demandPopin="true"
+				popinDisplay="Inline">
+				<Text text="Begin Date" />
+			</Column>
+			<Column
+				width="6em"
+				minScreenWidth="Small"
+				demandPopin="true"
+				popinDisplay="Inline">
+				<Text text="End Date" />
+			</Column>
+			<Column
+				width="4em"
+				minScreenWidth="Small"
+				demandPopin="true"
+				popinDisplay="Inline"
+				hAlign="Center">
+				<Text text="Enable" />
+			</Column>
+			<Column width="2em"
+				minScreenWidth="Small"
+				hAlign="Center">
+				<Text text="" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier
+						title="{FullName}"
+						text=""/>
+					<Text
+						text="{
+						path: 'BeginDate',
+						formatter: '.dateConvert'
+					}" />
+					<Text
+						text="{path: 'EndDate',
+						formatter: '.dateConvert'}" />
+					<ObjectIdentifier
+						title="{IsEnabled}"
+						text=""/>
+					<core:Icon src="sap-icon://sys-cancel" tooltip="Remove" color="#FF0000" press="onPressIconDeleteDelegatedPerson">
+						<core:layoutData>
+							<FlexItemData growFactor="1"/>
+						</core:layoutData>
+					</core:Icon>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+		</content>
+		<beginButton>
+			<Button text="New Delegation" icon="sap-icon://add" press="onPressDelegationOptionsDialog"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="onPressCloseDelegationsListDialog"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

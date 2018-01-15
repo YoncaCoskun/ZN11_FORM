@@ -1,0 +1,413 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" controllerName="zn11_form.controller.resendPayment" height="100%"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:commons="sap.ui.commons" class="sapUiSizeCompact"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns="sap.m">
+	<tnt:ToolPage>
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button class="box-shadow" icon="sap-icon://menu2"  press="onSideNavButtonPress" type="Transparent">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSeparator/>
+				<ToolbarSpacer/>
+				<Text class="box-shadow" text="" wrapping="false"/>
+				<tnt:ToolHeaderUtilitySeparator/>
+				<ToolbarSpacer>
+					<layoutData>
+						<OverflowToolbarLayoutData minWidth="20px" priority="NeverOverflow"/>
+					</layoutData>
+				</ToolbarSpacer>
+				<Button press="handleUserNamePress" text="" type="Transparent" id="ReidButtonUserForm" icon="sap-icon://log">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation>
+				<tnt:item>
+					<tnt:NavigationList>
+						<tnt:NavigationListItem icon="sap-icon://home" select="btnHomeClick" text="Home"/>					
+					</tnt:NavigationList>
+				</tnt:item>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer>
+				<pages>
+					<Page id="idHomePagerePaymentForm" showHeader="false">
+					<ScrollContainer height="100%" horizontal="false"  vertical="true">
+						<OverflowToolbar>
+			<Button icon="sap-icon://undo" text="Send"  press="sendBackAction">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>	
+	</OverflowToolbar>
+	<IconTabBar class="sapUiResponsiveContentPadding" expanded="{device]/isNoPhone}">
+		<items>
+			<IconTabFilter text="DOCUMENT">
+				<Button icon="sap-icon://print" text="Print the document"/>
+				<Button icon="sap-icon://notes" text="Notes"/>
+				<Button icon="sap-icon://save" text="Save Changes"/>
+				<Panel class="sapUiSmallMargin panelContainer generalLabelFont generalLabelFontUi" expandable="false" width="95%">
+					<headerToolbar>
+						<Toolbar class="box-header">
+							<core:Icon class="size1 icon-shadow" color="#FFF" src="sap-icon://user-edit"/>
+							<ToolbarSeparator/>
+							<Title class="approvalText" text="Payment Approval"/>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<Panel class="panelBottom" id="RePaymentpanelFirs" width="auto">
+							<content>
+								<ImageContent class="imageLogo" src="img/logo-n11-large.png"></ImageContent>
+							</content>
+						</Panel>
+						<Panel class="panelBottom" id="RepanelFirstContainerPayment" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Form Details"/>
+									<Button  class="size1 icon-shadow" color="#FFF" icon="sap-icon://user-edit" press="editForm" text=""/>			
+									<Button class="size1 icon-shadow" color="#FFF" icon="sap-icon://comment" press="displayComment" text=""/>
+									<!--<ImageContent class="imageLogo" src="img/n11_logo.png"></ImageContent>-->
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm columnsXL="3" emptySpanM="0" columnsM="2" columnsL="2" editable="true" emptySpanL="0" emptySpanXL="0" labelSpanL="4"
+										labelSpanM="4" labelSpanXL="4" layout="ResponsiveGridLayout" maxContainerCols="3">
+										<f:content>
+											<core:Title/>
+											<Label text="Request Owner"/>
+											<Input class="inputForm" value="" id="RePayrequestOwner" enabled="false"/>
+											<Label text="Department"/>
+											<Input class="inputForm" value="" id="RePaydepartment" enabled="false"/>
+											<Label text="Title"/>
+											<Input class="inputForm" value="" id="RePaytitle" enabled="false"/>
+											<Label text="Payment Form Type"/>
+											<Input class="inputForm" value="" id="RePayFormType" enabled="false"/>
+											<core:Title/>
+											<Label text="Request Number"/>
+											<Input class="inputForm" value="" id="RePayrequestNum" enabled="false"/>
+											<Label text="Request Date"/>
+											<DatePicker class="inputForm" id="RePayrequestDate" value="" enabled="false" />
+											<HBox>
+												<Input class="inputForm" value="" id="RePayrequestTime" enabled="false"/>
+											</HBox>
+											<Label text="Status"/>
+											<Input class="inputForm" value="In-Progress" id="RePaystatus" enabled="false"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class="panelBottom buttonPosition" id="RepanelSecondContainerPayment" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Invoice Details"/>
+								</Toolbar>
+							</headerToolbar>
+							<VBox class="sapUiSmallMargin">
+								<f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+									<f:content>
+										<core:Title/>
+										<Label text="Invoice Date"/>
+										<DatePicker class="inputForm" id="RePayInvoiceDate" value="" width="100%"  enabled="false"/>
+										<Label text="Expiry Date"/>
+										<DatePicker class="inputForm" id="RePayExpiryDate" value="" width="100%" enabled="false"/>
+										<Label text="Currency Type" />
+										<Input class="inputForm" value="" width="100%" id="RePayCurrencyType" enabled="false"/>
+										<Input class="inputForm" value="" width="100%" id="RePayCurrency" enabled="false"/>
+										<Label text="Invoice Number"/>
+										<Input class="inputForm" value="" width="100%" id="RePayInvoiceNum" enabled="false"/>
+									</f:content>
+								</f:SimpleForm>
+							</VBox>
+						</Panel>
+						<Panel class="panelBottom buttonPosition" id="RepanelThirdContainerPayment" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Budget Approval Form"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+											<Label text="Related Budget No" id="RelatedTbl1" visible="true"/>
+											<Table id="RePayBafidTable" inset="false"  items="{ path: '/results', sorter: { path: 'budgetNumber' } }" visible="true">
+												<columns>
+													<Column width="12em">
+														<Text text="Budget Number"/>
+													</Column>
+													<Column demandPopin="true" minScreenWidth="Tablet">
+														<Text text="Total BAF"/>
+													</Column>
+													<Column demandPopin="true" minScreenWidth="Tablet">
+														<Text text="Used BAF"/>
+													</Column>
+													<Column demandPopin="true" hAlign="Right" minScreenWidth="Tablet">
+														<Text text="Used Amount (TRY)"/>
+													</Column>
+													<Column demandPopin="true" hAlign="Right" minScreenWidth="Tablet">
+														<Text text="Remaining Amount(TRY)"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>
+															<Text text="{budgetNumber}"/>
+															<Text text="{totalBAF}"/>
+															<Text text="{usedBAF}"/>
+															<Text text="{usedAmount}"/>
+															<Text text="{remainAmount}"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+											<Label text="Related Budget No" id="RelatedTbl2" visible="false"/>
+											<Table id="RePayBafidTable2" inset="false"  items="{ path: '/results', sorter: { path: 'budgetNumber' } }" visible="false">
+												<columns>
+													<Column width="12em">
+														<Text text="Budget Number"/>
+													</Column>
+													<Column demandPopin="true" minScreenWidth="Tablet">
+														<Text text="Total BAF"/>
+													</Column>
+													<Column demandPopin="true" minScreenWidth="Tablet">
+														<Text text="Used BAF"/>
+													</Column>
+													<Column demandPopin="true" hAlign="Right" minScreenWidth="Tablet">
+														<Text text="Used Amount (TRY)"/>
+													</Column>
+													<Column demandPopin="true" hAlign="Right" minScreenWidth="Tablet">
+														<Text text="Remaining Amount(TRY)"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>
+															<Text text="{budgetNumber}"/>
+															<Input class="inputForm" value="{path: 'totalBAF'}" id="ReRelatedNototalId2" enabled="true"/>
+															<Input class="inputForm" value="{path: 'usedBAF'}" id="ReRelatedNousedId2" enabled="true" />
+															<Input class="inputForm" value="{path: 'usedAmount'}" id="ReRelatedNousedAmountId2" enabled="true" change="changeUsedAmount"/>
+															<Text text="{remainAmount}"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+											<Label text=""/>
+											<Button ariaDescribedBy="defaultButtonDescription genericButtonDescription" visible="false" text="Add" width="20%">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<HBox>
+												<Label class="labelPay" text="Total Amount:"/>
+												<Input class="inputForm" value="" id="RePayTotalAmount" enabled="false"/>
+											</HBox>
+											<Label text="Doc(invoice..etc)" visible="true"/>
+											<Button text="Add" width="10%" visible="false">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class="panelBottom" id="RepanelFourthContainerPayment" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Vendor Details"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
+										<f:content>
+											<Label text="Vendor Name"/>
+											<Input class="inputForm" id="RePayVenName" liveChange="additionalInfoValidation" showSuggestion="true"
+										showValueHelp="true" suggestionItems="{/SuppSet}" type="Text" valueHelpRequest="handleValueHelpVendor" valueState="{/supplierState}" enabled="false">
+										<suggestionItems>
+											<core:Item key="" text="{path:'vendorModel>',
+													formatter: '.formatSupp'}" id="ReidTextSupp"/>
+										</suggestionItems>
+											</Input>
+											<Label text="Vendor Address"/>
+											<TextArea class="inputTextArea"  value="" id="RePayVenAdd" enabled="false"/>
+											<Label text="Vendor VKN/TCKN"/>
+											<Input class="inputForm"  value="" id="RePayVenTC" enabled="false"/>
+											<Label text="Vendor Phone No"/>
+											<Input class="inputForm" value="" id="RePayVenPhone" enabled="false"/>
+											<Label text="Contact Person"/>
+											<Input class="inputForm" value="" id="RePayConPer" enabled="false"/>
+											<Label text="Vendor E-Mail"/>
+											<Input class="inputForm"  value="" id="RePayVenMail" enabled="false"/>
+											<Label text="Bank Name"/>
+											<Input class="inputForm"  value="" id="RePayBankName" enabled="false"/>
+											<Label text="IBAN Number"/>
+											<Input class="inputForm"  value="" id="RePayIBAN" enabled="false"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class="panelBottom buttonPosition" id="RepanelFifthContainerPayment" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Payment Details"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm editable="true" layout="ResponsiveGridLayout" maxContainerCols="3">
+										<f:content>
+											<Label text="Type"/>
+											<Input class="inputForm"  value="" id="RePayType" enabled="false" />
+											<Label text="Subject"/>									
+											<TextArea value="" growing="true" width="100%" id="RePaySubject" enabled="false"/>
+											<Label text="Payment Type"/>
+											<RadioButtonGroup columns="2" select="clickPayment" id="RePaymentType" >
+												<buttons>
+													<RadioButton id="ReRB-Down" text="Down Payment" enabled="false"/>
+													<RadioButton id="ReRB-Ins" text="Installment Payment" enabled="false"/>
+												</buttons>
+											</RadioButtonGroup>
+											<Label text="" id="lblInsTbl" visible="true"/>
+											<VBox>
+												<Table id="RePayInstallementTbl" inset="false" items="{ path: '/results', sorter: { path: 'installement' } }" visible="true">
+													<columns>
+														<Column width="12em">
+															<Text text="Installement"/>
+														</Column>
+														<Column demandPopin="true" minScreenWidth="Tablet">
+															<Text text="Expiry Date"/>
+														</Column>
+														<Column demandPopin="true" hAlign="Right" minScreenWidth="Tablet">
+															<Text text="VAT Incl. Amount"/>
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem>
+															<cells>
+																<Text text="{installement}"/>
+																<Text text="{expdt}"/>
+																<Text text="{vatInclAmount}"/>
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
+											</VBox>
+											<Label text="" id="lblInsTbl2" visible="false"/>
+											<VBox>
+												<Table id="RePayInstallementTbl2" inset="false" items="{ path: '/results', sorter: { path: 'installement' } }" visible="false">
+													<columns>
+														<Column width="12em">
+															<Text text="Installement"/>
+														</Column>
+														<Column demandPopin="true" minScreenWidth="Tablet">
+															<Text text="Expiry Date"/>
+														</Column>
+														<Column demandPopin="true" hAlign="Right" minScreenWidth="Tablet">
+															<Text text="VAT Incl. Amount"/>
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem>
+															<cells>
+																<Input class="inputForm" value="{path: 'installement'}" id="ReInsId2" enabled="true"/>
+																<Input class="inputForm" value="{path: 'expdt'}" id="ReInsExpdtId2" enabled="true"/>
+																<Input class="inputForm" value="{path: 'vatInclAmount'}" id="ReInsVatIncId2" enabled="true"/>
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
+											</VBox>
+											<Label text="Installment Amount"/>
+											<Input class="inputForm" id="RePayInsAmount" value="" enabled="false"/>
+											<Label text="Comment"/>
+											<TextArea class="inputTextArea" id="RePayComment" enabled="false"/>
+											<Label text="Payment Amount"/>
+											<Input class="inputForm" id="ReidPayAmount" value="" enabled="false"/>
+											<HBox>
+												<Label class="labelPay" id="ReidTRY1" text="TRY"/>
+											</HBox>
+											<Label text="VAT Amount"/>
+											<Input class="inputForm" id="RePayidVatAmount" value="" enabled="false"/>
+											<Label text="Withholding Tax"/>
+											<Input class="inputForm" id="RePayidTax" value="" enabled="false"/>
+											<Label text="VAT Incl. Amount"/>
+											<Input class="inputForm" id="RePayidVatIncAmount" value="" enabled="false"/>
+											<HBox>
+												<Label class="labelPay" id="ReidTRY2" text="TRY"/>
+											</HBox>
+											<Label text="Advance Information"/>
+											<Input class="inputForm" value="" id="RePayAdvanceInf" enabled="false"/>
+											<Label text="Advance Amount"/>
+											<Input class="inputForm" value="" id="RePayAdvAmount" enabled="false"/>
+											<Label text="Net Payment Amount"/>
+											<Input class="inputForm" value="" id="RePayNetAmount" enabled="false"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+					</content>
+				</Panel>
+			</IconTabFilter>
+			<IconTabFilter text="FLOW">
+				<List headerText="A List" showSeparators="Inner"></List>
+			</IconTabFilter>
+			<IconTabFilter text="MESSAGES">
+				<Button icon="sap-icon://add" press="onAddMessageDialogPress" text="Add Message" id="ReidClickPay"/>
+				<Table id="idRePaymentMessage" inset="false" items="{ path: '/ProductCollection', sorter: { path: 'Name' } }">
+					<columns>
+						<Column width="12em">
+							<Text text="Send Name"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Send Date"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Subject"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Message"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{SendName}"/>
+								<Text text="{SendDate}"/>
+								<Text text="{Subject}"/>
+								<Text text="{Message}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+	<OverflowToolbar>
+		<Button icon="sap-icon://undo" text="Send"  press="sendBackAction">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>	
+	</OverflowToolbar>
+						</ScrollContainer>
+					</Page>
+				
+					<ScrollContainer height="100%" horizontal="false"  vertical="true">						
+					</ScrollContainer>
+
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>	
+		
+		
+		
+</mvc:View>

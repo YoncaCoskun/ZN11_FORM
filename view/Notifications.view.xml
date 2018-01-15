@@ -1,0 +1,290 @@
+<mvc:View
+	controllerName="zn11_form.controller.Notifications"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+	
+	<Panel id="notifHome">
+	
+	
+	<GenericTile id="apprBudget" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout paymentTileLayout" header="Budget Form"  press="apprBudgetTable">
+		<TileContent  footer="Pending Forms">
+			<NumericContent id="apprBudgetNum" value="" icon="sap-icon://line-charts" />
+		</TileContent>
+	</GenericTile>
+	
+	<GenericTile id="apprPayment" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout expenseTileLayout" header="Payment Form" press="apprPaymentTable">
+		<TileContent  footer="Pending Forms">
+			<NumericContent id="apprPafNum" value="" icon="sap-icon://line-charts" />
+		</TileContent>
+	</GenericTile>
+	<GenericTile id="apprExpense" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout budgetTileLayout" header="Expense Form" press="apprExpenseTable">
+		<TileContent footer="Pending Forms">
+			<NumericContent id="apprExpenseNum" value="" icon="sap-icon://line-charts" />
+		</TileContent>
+	</GenericTile>
+	
+	</Panel>
+	<Panel id="notifBudgetPanel" visible="false">
+					<Table visible="false" id="idNotifsBudgetFormTable" inset="false" items="{ path: '/', sorter: { path: 'OBJNO', descending: 'true'}}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Budget Form" level="H2"/>
+								<ToolbarSpacer/>
+								<Button text="Back" press="backApprB" type="Emphasized"/>
+							</Toolbar>
+							
+						</headerToolbar>
+						<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Number" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Status" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Date" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Comment" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem press="pressColumnBudget" type="Navigation">
+								<cells>
+									<Text text="{OBJNO}" />
+									<Text text="{path: 'OBJTY',
+                                         formatter: '.statusObjty'
+									}" />
+									<Text text="{DATUM}-{UZEIT}" />
+									<Text text="{CMMNT}" />							
+								</cells>
+							</ColumnListItem>
+							
+						</items>
+			</Table>
+			
+			<Table visible="false" id="idNotifsPafFormTable" inset="false" items="{ path: '/', sorter: { path: 'OBJNO', descending: 'true'}}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Payment Form" level="H2"/>
+								<ToolbarSpacer/>
+								<Button text="Back" press="backApprB" type="Emphasized"/>
+							</Toolbar>
+							
+						</headerToolbar>
+						<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Number" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Status" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Date" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Comment" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem press="pressColumnPaf" type="Navigation">
+								<cells>
+									<Text text="{OBJNO}" />
+									<Text text="{path: 'OBJTY',
+                                         formatter: '.statusObjty'
+									}" />
+									<Text text="{DATUM}-{UZEIT}" />
+									<Text text="{CMMNT}" />							
+								</cells>
+							</ColumnListItem>
+							
+						</items>
+			</Table>
+			
+			<Table visible="false" id="idNotifsExpenseFormTable" inset="false" items="{ path: '/', sorter: { path: 'OBJNO', descending: 'true'}}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Expense Form" level="H2"/>
+								<ToolbarSpacer/>
+								<Button text="Back" press="backApprB" type="Emphasized"/>
+							</Toolbar>
+							
+						</headerToolbar>
+						<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Number" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Status" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Date" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Comment" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem press="pressColumnExpense" type="Navigation">
+								<cells>
+									<Text text="{OBJNO}" />
+									<Text text="{path: 'OBJTY',
+                                         formatter: '.statusObjty'
+									}" />
+									<Text text="{DATUM}-{UZEIT}" />
+									<Text text="{CMMNT}" />							
+								</cells>
+							</ColumnListItem>
+							
+						</items>
+			</Table>
+<!-- 			<Table id="idNotifDetailTableB" visible="false" inset="false"  items="{ path: '/',sorter: [{ path: 'DATUM', descending:true},{ path: 'UZEIT', descending:true}]}"> -->
+			<Table id="idNotifDetailTableB" visible="false" inset="false"  items="{ path: '/'}">
+						<headerToolbar>
+							<Toolbar>
+							<Title text="" id="notifDetTitleB" level="H2"/>
+								<ToolbarSpacer/>
+								<Button text="Back" press="backNotifB" type="Emphasized"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="3em">
+								<Text text="Owner No" demandPopin="true" hAlign="Left" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Request Owner" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6em">
+								<Text text="Owner Deprt" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="4em">
+								<Text text="Owner Title" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="3em">
+								<Text text="Type" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6em">
+								<Text text="Date" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Comment" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{PERNR}" />
+									<Text text="{FNAME} {LNAME}" />
+									<Text text="{DEPRT}" />
+									<Text text="{TITLE}" />
+									<Text text="{path: 'OBJTY',
+                                         formatter: '.statusObjty'
+									}" />
+									<Text text="{DATUM} - {UZEIT}" />		
+									<Text text="{CMMNT}" />
+														
+								</cells>
+							</ColumnListItem>
+						</items>
+			</Table>
+			
+			<Table id="idNotifDetailTableP" visible="false" inset="false"  items="{ path: '/'}">
+						<headerToolbar>
+							<Toolbar>
+							<Title text="" id="notifDetTitleP" level="H2"/>
+								<ToolbarSpacer/>
+								<Button text="Back" press="backNotifP" type="Emphasized"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="3em">
+								<Text text="Owner No" demandPopin="true" hAlign="Left" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Request Owner" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6em">
+								<Text text="Owner Deprt" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="4em">
+								<Text text="Owner Title" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="3em">
+								<Text text="Type" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6em">
+								<Text text="Date" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Comment" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{PERNR}" />
+									<Text text="{FNAME} {LNAME}" />
+									<Text text="{DEPRT}" />
+									<Text text="{TITLE}" />
+									<Text text="{path: 'OBJTY',
+                                         formatter: '.statusObjty'
+									}" />
+									<Text text="{DATUM} - {UZEIT}" />		
+									<Text text="{CMMNT}" />
+														
+								</cells>
+							</ColumnListItem>
+						</items>
+			</Table>
+			
+			<Table id="idNotifDetailTableE" visible="false" inset="false"  items="{ path: '/'}">
+						<headerToolbar>
+							<Toolbar>
+							<Title text="" id="notifDetTitleE" level="H2"/>
+								<ToolbarSpacer/>
+								<Button text="Back" press="backNotifE" type="Emphasized"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="3em">
+								<Text text="Owner No" demandPopin="true" hAlign="Left" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Request Owner" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6em">
+								<Text text="Owner Deprt" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="4em">
+								<Text text="Owner Title" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="3em">
+								<Text text="Type" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6em">
+								<Text text="Date" />
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Comment" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{PERNR}" />
+									<Text text="{FNAME} {LNAME}" />
+									<Text text="{DEPRT}" />
+									<Text text="{TITLE}" />
+									<Text text="{path: 'OBJTY',
+                                         formatter: '.statusObjty'
+									}" />
+									<Text text="{DATUM} - {UZEIT}" />		
+									<Text text="{CMMNT}" />
+														
+								</cells>
+							</ColumnListItem>
+						</items>
+			</Table>
+			</Panel>
+</mvc:View>

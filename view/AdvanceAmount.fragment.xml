@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+      <TableSelectDialog  id="idpopAdvanceTable" inset="false" search="handleSearchPaf" noDataText="No Payment Approval Form Found" title="Payment Approval Form" confirm="handleClosePaf" cancel="handleCancelPaf" items="{ path: '/'}">
+            <ColumnListItem>
+                  <cells>
+                        <Text text="{PAFNO}"/>
+                        <Text text=""/>
+                  </cells>
+            </ColumnListItem>
+            <columns>
+                  <Column demandPopin="true" minScreenWidth="Tablet">
+                        <header>
+                              <Text text="Payment Approval Form"/>
+                        </header>
+                  </Column>
+                  <Column demandPopin="true" minScreenWidth="Tablet">
+                        <header>
+                              <Text text="Advance Amount"/>
+                        </header>
+                  </Column>
+            </columns>
+      </TableSelectDialog>
+</core:FragmentDefinition>

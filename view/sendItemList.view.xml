@@ -1,0 +1,138 @@
+<mvc:View
+	controllerName="zn11_form.controller.sendItemList"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+	<IconTabBar id="idIconTabBarStretchContent"
+		stretchContentHeight="true"
+		backgroundDesign="Transparent"
+		applyContentPadding="false"
+		expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter id="siIconBudget" count="" 	icon="sap-icon://customer-financial-fact-sheet"
+				iconColor="Positive"
+				design="Horizontal" text="Budget Approval Forms">
+				<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+					<Table id="idBudgetFormTable" inset="false" items="{ path: '/', sorter: { path: 'BAFNO', descending:true}}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Budget Form" level="H2"/>
+								<ToolbarSpacer/>
+								<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
+								<Button tooltip="View Settings" icon="sap-icon://action-settings" press="handleOpenDialog"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column id="BAFNO" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Number" />
+							</Column>
+							<Column id="RQDAT" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Date" />
+							</Column>
+							<Column id="TYPEE" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6em">
+								<Text text="Type" />
+							</Column>
+							<Column id="STATU" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Status" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem press="pressColumnBudget" type="Navigation">
+								<cells>
+									<Text text="{BAFNO}" />
+									<Text text="{RQDAT}" />
+									<Text text="{TYPEE}" />
+									<Text text="{path: 'STATU',
+                                         formatter: '.statusObjty'
+									}" />							
+								</cells>
+							</ColumnListItem>
+							
+						</items>
+			</Table>
+				</ScrollContainer>
+			</IconTabFilter>
+				<IconTabSeparator />
+			<IconTabFilter id="siIconPaf"	icon="sap-icon://payment-approval"
+				iconColor="Critical"
+				design="Horizontal" count="0"  text="Payment Approval Forms">
+				<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+					<Table id="idPaymentFormTable" inset="false" items="{ path: '/', sorter: { path: 'PAFNO', descending:true}}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Payment Form" level="H2"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column id="BAFNOp" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Number" />
+							</Column>
+							<Column id="RQDATp" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Date" />
+							</Column>
+							<Column id="TYPEEp" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6em">
+								<Text text="Type" />
+							</Column>
+							<Column id="STATUp" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Status" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem press="pressColumnPaf" type="Navigation">
+								<cells>
+									<Text text="{PAFNO}" />
+									<Text text="{RQDAT}" />
+									<Text text="{TYPEE}" />
+									<Text text="{path: 'STATU',
+                                         formatter: '.statusObjty'
+									}" />							
+								</cells>
+							</ColumnListItem>
+						</items>
+			</Table>
+				</ScrollContainer>
+			</IconTabFilter>
+				<IconTabSeparator  />
+			<IconTabFilter 	id="siIconExpense" icon="sap-icon://monitor-payments"
+				iconColor="Negative"
+				design="Horizontal" 	count="0" text="Expense Approval Forms">
+				<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+					<Table id="idExpenseFormTable" inset="false" items="{ path: '/', sorter: { path: 'EAFNO', descending:true}}">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Expense Form" level="H2"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column id="BAFNOe" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Number" />
+							</Column>
+							<Column id="RQDATe" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="7em">
+								<Text text="Request Date" />
+							</Column>
+							<Column id="TYPEEe" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="6em">
+								<Text text="Type" />
+							</Column>
+							<Column id="STATUe" minScreenWidth="Tablet" demandPopin="true" hAlign="Left" width="5em">
+								<Text text="Status" />
+							</Column>
+					</columns>
+						<items>
+							<ColumnListItem press="pressColumnEaf" type="Navigation">
+								<cells>
+									<Text text="{EAFNO}" />
+									<Text text="{RQDAT}" />
+									<Text text="{TYPEE}" />
+									<Text text="{path: 'STATU',
+                                         formatter: '.statusObjty'
+									}" />							
+								</cells>
+							</ColumnListItem>
+						</items>
+			</Table>
+				</ScrollContainer>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</mvc:View>

@@ -1,0 +1,224 @@
+<core:View xmlns:f="sap.ui.layout.form" class="sapUiSizeCompact" controllerName="zn11_form.controller.Home" height="100%"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:commons="sap.ui.commons"
+	xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:tnt="sap.tnt" xmlns="sap.m">
+	<tnt:ToolPage id="toolPage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button class="box-shadow" icon="sap-icon://menu2" id="sideNavigationToggleButton" press="onSideNavButtonPress" type="Transparent">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSeparator/>
+				<!--<Image densityAware="false" src="img/n11.png" width="40px"></Image>-->
+				<ToolbarSpacer/>
+				<Text class="box-shadow" text="" wrapping="false"/>
+				<tnt:ToolHeaderUtilitySeparator/>
+				<ToolbarSpacer>
+					<layoutData>
+						<OverflowToolbarLayoutData minWidth="20px" priority="NeverOverflow"/>
+					</layoutData>
+				</ToolbarSpacer>
+				<Button class="box-shadow" color="#cae4fb"  press="btnApprovalsClick" icon="sap-icon://message-popup" text="" id="idButtonMsg"/>
+				<ToolbarSeparator/>
+				<Button class="box-shadow" color="#cae4fb" icon="sap-icon://email"/>
+				<ToolbarSeparator/>
+				<Button press="handleUserNamePress" text="" type="Transparent" id="idButtonUser" icon="sap-icon://log">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation id="sideNavigation">
+				<tnt:item>
+					<tnt:NavigationList>
+						<tnt:NavigationListItem icon="sap-icon://home" select="btnHomeClick" text="Home"/>
+						<tnt:NavigationListItem icon="sap-icon://settings" text="Workflow Management">
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnApprovalsClick" text="Approvals"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnNotifClick" text="Notifications"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnSendItemsClick" text="Sent Items"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnMessagesClick" text="Messages"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnDraftsClick" text="Drafts"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnHistoryClick" text="History"></tnt:NavigationListItem>
+						</tnt:NavigationListItem>
+						<tnt:NavigationListItem icon="sap-icon://settings" text="Application">
+							<tnt:NavigationListItem icon="sap-icon://action-settings" key="idExpensekey" select="btnBudgetClick" text="Budget Approval"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnPaymentClick" text="Payment Approval"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnExpenseClick" text="Expense Approval"></tnt:NavigationListItem>
+						</tnt:NavigationListItem>
+						<!--<tnt:NavigationListItem icon="sap-icon://settings" text="Approvers">
+							<tnt:NavigationListItem icon="sap-icon://action-settings" key="idExpensekey" select="btnManBudgetClick" text="Budget Approval"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings"  select="btnManPaymentClick" text="Payment Approval"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnExpenseClick" text="Expense Approval"></tnt:NavigationListItem>
+						</tnt:NavigationListItem>
+						<tnt:NavigationListItem icon="sap-icon://settings" text="Send Back">
+							<tnt:NavigationListItem icon="sap-icon://action-settings" key="idExpensekey" select="btnResendBudgetClick" text="Budget Approval"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnPaymentClick" text="Payment Approval"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnExpenseClick" text="Expense Approval"></tnt:NavigationListItem>
+						</tnt:NavigationListItem>	
+						<tnt:NavigationListItem icon="sap-icon://settings" text="Take Opinion">
+							<tnt:NavigationListItem icon="sap-icon://action-settings" key="idExpensekey" select="btnTakeOBudgetClick" text="Budget Approval"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnTakeOPaymentClick" text="Payment Approval"></tnt:NavigationListItem>
+							<tnt:NavigationListItem icon="sap-icon://action-settings" select="btnTakeOExpenseClick" text="Expense Approval"></tnt:NavigationListItem>
+						</tnt:NavigationListItem>-->					
+					</tnt:NavigationList>
+				</tnt:item>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="navContainer">
+				<pages>
+					<Page id="idHomePage" showHeader="false">
+						<Panel>
+						
+		<GenericTile id="homeDlgsyn" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout delegTileLayout" header="Delegations" subheader="" press="onPressAddDelegation">
+		<TileContent footer="Delegations Settings">
+			<NumericContent id="tileDelegations" value="" icon="sap-icon://line-charts" />
+		</TileContent>
+	</GenericTile>
+	
+	
+	
+
+	
+	</Panel>
+					</Page>
+					<Page id="idBudgetPage" showHeader="false">
+						<ScrollContainer height="100%" horizontal="false" id="root3" vertical="true">
+							<content>
+								<mvc:XMLView viewName="zn11_form.view.Budget"/>
+							</content>
+						</ScrollContainer>
+					</Page>
+					<Page id="idPaymentPage" showHeader="false">
+						<ScrollContainer height="100%" horizontal="false" id="root4" vertical="true">
+							<content>
+								<mvc:XMLView viewName="zn11_form.view.Payment"/>
+							</content>
+						</ScrollContainer>
+					</Page>
+					
+					<Page id="idExpensePage" showHeader="false">
+						<ScrollContainer height="100%" horizontal="false" id="root1" vertical="true">
+							<content>
+								<mvc:XMLView viewName="zn11_form.view.Expense"/>
+							</content>
+						</ScrollContainer>
+					</Page>
+					
+					<Page id="idSendItemPage" showHeader="false">
+						<ScrollContainer height="100%" horizontal="false"  vertical="true">
+							<content>
+								<mvc:XMLView viewName="zn11_form.view.sendItemList"/>
+							</content>
+						</ScrollContainer>
+					</Page>
+					<Page id="idApprovalsItemPage" showHeader="false">
+						<ScrollContainer height="100%" horizontal="false"  vertical="true">
+							<content>
+								<mvc:XMLView viewName="zn11_form.view.Approvals"/>
+							</content>
+						</ScrollContainer>
+					</Page>
+					<Page id="idNotifItemPage" showHeader="false">
+						<ScrollContainer height="100%" horizontal="false"  vertical="true">
+							<content>
+								<mvc:XMLView viewName="zn11_form.view.Notifications"/>
+							</content>
+						</ScrollContainer>
+					</Page>
+					<ScrollContainer height="100%" horizontal="false" id="idExpensePage2" vertical="true">
+						<Panel class="sapUiSmallMargin sapUiLargeMarginBegin panelContainer" expandable="false" width="85%">
+							<headerToolbar>
+								<Toolbar class="box-header">
+									<core:Icon class="size1 icon-shadow" color="#FFF" src="sap-icon://user-edit"/>
+									<ToolbarSeparator/>
+									<Title text="Expense Approval Form"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<Title level="H4" text="Form Details" textAlign="Center"/>
+								<f:Form editable="true" minWidth="auto">
+									<f:layout>
+										<f:ResponsiveGridLayout columnsL="2" columnsM="2" emptySpanL="0" emptySpanM="0" labelSpanL="3" labelSpanM="6"/>
+									</f:layout>
+									<f:formContainers>
+										<f:FormContainer expandable="false">
+											<f:formElements>
+												<f:FormElement label="{i18n>RequestInfo.requestOwner}">
+													<f:fields>
+														<commons:TextField editable="true" value="{path : 'DO_DT_ExpenseApproval/RequestInfo/requestOwner'}"/>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="{i18n>RequestInfo.department}">
+													<f:fields>
+														<commons:TextField editable="true" value="{path : 'DO_DT_ExpenseApproval/RequestInfo/department'}"/>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="{i18n>RequestInfo.title}">
+													<f:fields>
+														<commons:TextField editable="true" value="{path : 'DO_DT_ExpenseApproval/RequestInfo/title'}"/>
+													</f:fields>
+												</f:FormElement>
+											</f:formElements>
+										</f:FormContainer>
+										<f:FormContainer expandable="false">
+											<f:formElements>
+												<f:FormElement label="{i18n>RequestInfo.requestNumber}">
+													<f:fields>
+														<commons:TextField editable="true" value="{path : 'DO_DT_ExpenseApproval/RequestInfo/requestNumber'}"/>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="{i18n>RequestInfo.requestDate}">
+													<f:fields>
+														<commons:TextField editable="true" value="{path : 'DO_DT_ExpenseApproval/RequestInfo/requestDate'}"/>
+													</f:fields>
+												</f:FormElement>
+												<f:FormElement label="{i18n>RequestInfo.status}">
+													<f:fields>
+														<commons:TextField editable="true" value="{path : 'DO_DT_ExpenseApproval/RequestInfo/status'}"/>
+													</f:fields>
+												</f:FormElement>
+											</f:formElements>
+										</f:FormContainer>
+									</f:formContainers>
+								</f:Form>
+								<Title level="H4" text="Expense Details" textAlign="Center"/>
+								<f:Form class="comboBoxSize" editable="true" minWidth="auto">
+									<f:layout>
+										<f:ResponsiveGridLayout columnsL="2" columnsM="2" emptySpanL="0" emptySpanM="0" labelSpanL="3" labelSpanM="6"/>
+									</f:layout>
+									<f:formContainers>
+										<f:FormContainer expandable="false">
+											<f:formElements>
+												<f:FormElement label="{i18n>DO_DT_ExpenseApproval.currencyType}">
+													<f:fields>
+														<ComboBox value="{path : 'DO_DT_ExpenseApproval/currencyType'}" width="30%">
+															<core:Item key="0" text="USD"/>
+															<core:Item key="1" text="TRY"/>
+															<core:Item key="2" text="EUR"/>
+														</ComboBox>
+													</f:fields>
+												</f:FormElement>
+											</f:formElements>
+										</f:FormContainer>
+									</f:formContainers>
+									<f:formContainers>
+										<f:FormContainer expandable="false"></f:FormContainer>
+									</f:formContainers>
+								</f:Form>
+							</content>
+						</Panel>
+					</ScrollContainer>
+					<ScrollContainer height="100%" horizontal="false" id="page2" vertical="true"></ScrollContainer>
+					<ScrollContainer height="100%" horizontal="false" id="root2" vertical="true">
+						<Text text="This is the root page of the second element"></Text>
+					</ScrollContainer>
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</core:View>

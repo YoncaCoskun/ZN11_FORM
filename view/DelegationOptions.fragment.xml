@@ -1,0 +1,95 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout">
+	<Dialog title="New Delegation" contentWidth="35%">
+		<content>
+			<f:Form id="idFormDelegateOptions" editable="true">
+				
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="2"
+						emptySpanM="2" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="" visible="true">
+								<f:fields>
+									<Text text="All applications are open for delegated user"></Text>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Delegated To">
+								<f:fields>
+									<Input id="idInputDelegatedTo" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleDelegatedToValueHelp"
+										suggestionItems="{/d/results}" suggestionItemSelected="onPressSuggestionDelegatedTo">
+										<suggestionItems>
+											<core:Item text="{DisplayName}" additionalText="{UniqueName}"/>
+										</suggestionItems>
+									</Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Delegation Start">
+								<f:fields>
+									<DatePicker id="dateTimePickerDelegationStart" value="" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy"
+										change="handleChangeDateTimePickerDelegationStart"/>
+									<Label>
+										<layoutData>
+											<l:GridData span="XL3 L3 M3 S4"/>
+										</layoutData>
+									</Label>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Delegation Expire">
+								<f:fields>
+									<DatePicker id="dateTimePickerDelegationExpire" value="" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy"
+										change="handleChangeDateTimePickerDelegationExpire"/>
+									<CheckBox id="idCheckBoxNeverExpires" text="Never Expires" selected="false" select="selectCheckBoxNeverExpires">
+										<layoutData>
+											<l:GridData span="XL3 L3 M3 S4"/>
+										</layoutData>
+									</CheckBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Can Start A Process">
+								<f:fields>
+									<CheckBox id="idCheckBoxCanStartAProcess" text="" selected="false" select="selectCheckBoxCanStartAProcess"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Full Control">
+								<f:fields>
+									<CheckBox id="idCheckFullControl" text="" selected="false" select="selectCheckFullControl"/>
+									<Button id="idButtonApplicationDelegation" text="Application Delegation" width="93%" press="onPressApplicationDelegation">
+										<layoutData>
+											<l:GridData span="XL4 L4 M4 S12"/>
+										</layoutData>
+									</Button>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Can Approve A Process">
+								<f:fields>
+									<CheckBox id="idCheckBoxCanApproveAProcess" text="" selected="false" select="selectCheckBoxCanApproveAProcess"/>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Is Enabled?">
+								<f:fields>
+									<CheckBox id="idCheckIsEnabled" text="" selected="true" select="selectCheckIsEnabled"/>	
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="">
+								<f:fields>
+									<Input id="idInputTempUserId" type="Text" value=""
+										visible="true">
+									</Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+		<beginButton>
+			<Button text="OK" press="onPressSaveDelegationOptions"/>
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="closeDialogDelegationOptions"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

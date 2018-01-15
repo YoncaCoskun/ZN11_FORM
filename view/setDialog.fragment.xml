@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<ViewSettingsDialog confirm="handleConfirms" afterClose="dialogClose">
+		<customTabs>
+			<ViewSettingsCustomTab id="app-settings" icon="sap-icon://action-settings" title="Visible" tooltip="Application Settings">
+				<content>
+					<Panel>
+						<VBox>
+								<CheckBox id="sBAFNO" text="Request Number" selected="true"/>
+								<CheckBox id="sPERNR" text="Request Owner" selected="true"/>
+								<CheckBox id="sRQDAT" text="Request Date" selected="true"/>
+								<CheckBox id="sTYPEE" text="Type" selected="true"/>
+								<CheckBox id="sSTATU" text="Status" selected="true"/>
+					</VBox>
+					</Panel>
+				</content>
+			</ViewSettingsCustomTab>
+		</customTabs>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

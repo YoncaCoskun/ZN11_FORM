@@ -1,0 +1,354 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" controllerName="zn11_form.controller.Budget" height="100%"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:commons="sap.ui.commons" class="sapUiSizeCompact"
+	xmlns:html="http://www.w3.org/1999/xhtml" 	xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns="sap.m">
+	<OverflowToolbar>
+		<Button icon="sap-icon://paper-plane" text="Send" type="Accept" press="validateForm">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+		<Button icon="sap-icon://sys-cancel" text="Cancel" type="Reject">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+	</OverflowToolbar>
+		
+	<IconTabBar  id="budgetMainScreen" class="sapUiResponsiveContentPadding" expanded="{device]/isNoPhone}">
+		<items>
+			<IconTabFilter text="DOCUMENT">
+				<Button icon="sap-icon://print" text="Print the document" press="onPdfExport"/>
+				<Button icon="sap-icon://notes" text="Notes"/>
+				<Button icon="sap-icon://save" press="onSaveChange" text="Save Changes"/>
+				<Panel class="sapUiSmallMargin panelContainer generalLabelFont generalLabelFontUi" expandable="false" width="95%" id="panelBUD">
+					<headerToolbar>
+						<Toolbar class="box-header">
+							<Title class="approvalText" text="Budget Approval"/>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<Panel class="panelBottom" id="panelFirs" width="auto">
+							<content>
+								<ImageContent class="imageLogo" src="img/logo-n11-large.png"></ImageContent>
+							</content>
+						</Panel>
+						<Panel class="panelBottom" id="panelFirstContainerBudget" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Form Details"/>
+								
+									<!--<ImageContent class="imageLogo" src="img/n11_logo.png"></ImageContent>-->
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm columnsXL="3" emptySpanM="0" columnsM="2" columnsL="2" editable="true" emptySpanL="0" emptySpanXL="0" labelSpanL="4"
+										labelSpanM="4" labelSpanXL="4" layout="ResponsiveGridLayout" maxContainerCols="3">
+										<f:content>
+											<core:Title/>
+											<Label text="Request Owner"/>
+											<Input class="inputForm" value="" id="requestOwner" enabled="false"/>
+											<Label text="Department"/>
+											<Input class="inputForm" value="" id="department" enabled="false"/>
+											<Label text="Title"/>
+											<Input class="inputForm" value="" id="title" enabled="false"/>
+											<core:Title/>
+											<Label text="Request Number"/>
+											<Input class="inputForm" value="" id="requestNum" enabled="false"/>
+											<Label text="Request Date"/>
+<!-- 											<DatePicker class="inputForm" 	valueFormat="dd/MM/yyyy" id="requestDate"  /> -->
+											<Input class="inputForm" value="" id="requestDate" enabled="false"/>
+											<HBox>
+												<Input class="inputForm" value="" id="requestTime" enabled="false"/>
+											</HBox>
+											<Label text="Status"/>
+											<Input class="inputForm" value="" id="status" enabled="false"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class="panelBottom" id="panelSecondContainerBudget" showCollapseIcon="true" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Budget Details"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+											<core:Title/>
+											<Label required="true" text="Period Start/End"/>
+											<DatePicker class="inputForm" id="periodStart" value="" change="changeDate" />
+											<DatePicker class="inputForm" id="periodEnd" value="" change="changeDate"/>
+											<Label required="true" text="Supplier"/>
+											<Input class="inputForm" id="supplier" liveChange="additionalInfoValidation" showSuggestion="true"
+										showValueHelp="true" suggestionItems="{/SuppSet}" type="Text" valueHelpRequest="handleValueHelpSupplier" valueState="{/supplierState}">
+										<suggestionItems>
+											<core:Item key="" text="{path:'supplierModel>',formatter: '.formatSupp'}" id="idTextSupp"/>
+										</suggestionItems>
+									</Input>
+									<Label text="" visible="false"/>
+									<Input class="inputForm" value="" id="idSuppVis" visible="false"/>
+											<Label required="true" text="Subject"/>
+											<TextArea value="" growing="true" width="100%" id="subject"/>
+											<Label required="true" text="Budget Allocation"/>
+<!-- 					<ComboBox -->
+<!-- 					id="idBudget" -->
+<!-- 					showSecondaryValues= "true" -->
+<!-- 					value="{/comboBoxValue}" -->
+<!-- 						selectedKey="{/comboBoxKey}" -->
+<!-- 					items="{ -->
+<!-- 						path: 'budgetModel>/' -->
+<!-- 					}" change="selectChange"> -->
+<!-- 					<core:ListItem key="{path:'budgetModel>'}" text="{path:'budgetModel>'}" id="idText"/> -->
+<!-- 				</ComboBox> -->
+			
+				<Input
+				id="idBudget"
+				type="Text"
+				change="selectChange"
+				showSuggestion="true"
+				showValueHelp="true"
+				valueHelpRequest="handleValueHelp"
+				suggestionItems="{budgetModel>/}" >
+				<suggestionItems>
+					<core:Item text="{budgetModel>name}" id="idText"/>
+				</suggestionItems>
+			</Input>
+<!-- 											<Select id="idBudget"  -->
+<!-- 													forceSelection="false" -->
+<!-- 													items="{ path: 'budgetModel>/'}" -->
+<!-- 													change="selectChange"> -->
+<!-- 													<core:Item key="" text="{path:'budgetModel>', -->
+<!-- 													formatter: '.setFormat'}" id="idText"/> -->
+<!-- 											</Select>  -->
+											<Label text="Department"/>
+											<Input class="inputForm" enabled="false" value="" id="idDepartment"/>
+											<Label text="Type"/>
+											<Input class="inputForm" enabled="false" value="" id="idType"/>
+											<Label text="Description"/>
+											<Input class="inputForm" enabled="false" value="" id="idDesc"/>
+											<Label text="Sub.Description"/>
+											<Input class="inputForm" enabled="false" value="" id="idSubDesc"/>
+											<Label required="true" text="Remaining Budget"/>
+											<Input class="inputForm" value="" id="remBudget"/>
+											<Label required="true" text="Purpose"/>
+											<TextArea value="" growing="true" width="100%" id="purpose"/>
+											<Label required="true" text="Explanation"/>
+											<TextArea value="" growing="true" width="100%" id="explanation"/>
+											<Label text=""/>
+											<RadioButtonGroup class="sapUiMediumMarginBottom" id="formType" columns="4" select="selectFormType">
+												<buttons>
+													<RadioButton id="RB3-7" text="Others" key="Others" selected="true"/>
+													<RadioButton id="RB3-2" text="Donation" key="Donation"/>
+													<RadioButton id="RB3-1" text="Related Party"  key="Related Party"/>	
+													<RadioButton id="RB3-3" text="Domestic Education" key="Domestic Education"/>
+													<RadioButton id="RB3-4" text="Abroad Education" key="Abroad Education"/>
+													<RadioButton id="RB3-5" text="Oversea Business Trip" key="Oversea Business Trip"/>
+													<RadioButton id="RB3-6" text="Domestic Business Trip" key="Domestic Business Trip"/>			
+												</buttons>
+											</RadioButtonGroup>
+											<Label text="Related Party" id="idRelatedParty" visible="false"/>
+											<Input class="inputForm" id="relatedParty" showSuggestion="true" showValueHelp="true" suggestionItems="{/relatedPartySet}" type="Text" valueHelpRequest="handleValueHelpRelatedParty" valueState="{/relatedState}" visible="false" >
+										<suggestionItems>
+											<core:Item key="" text="{STRING}"/>
+										</suggestionItems>
+									</Input>
+									<Label text="" visible="false"/>
+									<Input class="inputForm" value="" id="idRelatedPartyVis" visible="false"/>
+											<Label text="B&amp;R Explanation"/>
+											<TextArea value="" growing="true" width="100%" id="brExp" enabled="false"/>
+											<Label text="Type here"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class="panelBottom" id="panelThirdContainerBudget" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Budget Amount"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm  id="SimpleFormChange354"
+												editable="true"
+												layout="ResponsiveGridLayout"
+												>
+										<f:content>
+											<core:Title/>
+											<Label required="true" text="Currency"/>
+											<Select class="labelCurrency" id="CurrencyType" change="selectChangeCur">
+												<items>
+													<core:Item text="" key=""/>
+													<core:Item text="TRY" key="TRY"/>
+													<core:Item text="USD" key="USD"/>
+													<core:Item text="EUR" key="EUR"/>
+													<core:Item text="GBP" key="GBP"/>
+												</items>
+											</Select>
+											<Input class="inputCurr" value="" id="currency" enabled="false">
+											</Input>
+											<Label required="true" text="Total Amount"/>
+											<!--<Input class="inputForm" value="" id="totalAmount"/>-->
+											<Input class="inputForm" change="changeBudgetTotalAmount" value="" id="totalAmount"/>
+											<HBox>
+												<Label class="labelExc" text="(Exc.VAT)"/>
+												<!--<Button icon="sap-icon://add" text="Add" class="" press="addListInput"/>-->
+											</HBox>
+											<Label required="true" text="Installments"/>
+											<Table id="idBudgetInstallmentTable" inset="false" width="25rem" class="classTableIns" items="{path: '/items'}">
+												<columns>
+													<Column width="1rem" hAlign="Left" minScreenWidth="Tablet">
+														<Text text="#"/>
+													</Column>
+													<Column demandPopin="true" hAlign="Left" minScreenWidth="Tablet" width="5rem">
+														<Text text="Month"/>
+													</Column>
+													<Column demandPopin="true" hAlign="Left" minScreenWidth="Tablet" width="9rem">
+														<Text text="Installment Amount"/>
+													</Column>
+												</columns>
+												<items>
+												<ColumnListItem>
+	                                                                <cells>
+	                                                                        <ObjectIdentifier title="{index}" text=""/>
+	                                                                        <Text text="{month}"/>
+	                                                                        <Input value=""
+	                                                                        change="onPressChangeTheInstallmentAmount"/>
+	                                                                </cells>
+	                                                        </ColumnListItem>
+												</items>
+											</Table>
+											<Label required="true" text="Total Amount"/>
+											<Input class="inputForm" value="" editable="false" id="idTotalAmount"/>
+											<Input class="inputForm" value=""  id="totalCurrAmount"/>
+											<HBox>
+												<Label class="labelPay" id="idTRY1" text="TRY"/>
+												<Label class="labelExc" text="(Exc.VAT)"/>
+											</HBox>
+											<Input class="inputForm" value="" editable="false" id="idTotalAmountTemp" visible="true"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class="panelBottom" id="panelFourthContainerBudget" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Attachment"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<l:VerticalLayout>
+		
+			
+			<Table id="ins" items="{/}">
+			<headerToolbar>
+			<Toolbar>
+			<ToolbarSpacer/>
+			<u:FileUploader
+			id="fileupload"
+			tooltip="Upload your file to the local server"
+			uploadComplete="handleUploadComplete"
+			change="handleValueChange"
+			style="Emphasized"
+			placeholder="Choose a file for Upload...">
+				<u:parameters>
+					<u:FileUploaderParameter
+						name="param1"
+						value="Foo"/>
+					<u:FileUploaderParameter
+						name="param2"
+						value="bar"/>
+				</u:parameters>
+				<u:headerParameters>
+					<u:FileUploaderParameter
+						name="headerParam1"
+						value="Foo"/>
+					<u:FileUploaderParameter
+						name="headerParam2"
+						value="bar"/>
+				</u:headerParameters>
+			</u:FileUploader>
+<!-- 				<Button icon="sap-icon://add" text="Row" press="addRow"/> -->
+<!-- 				<Button icon="sap-icon://display" text="Row" press="fetchRecords"/> -->
+			</Toolbar>
+		</headerToolbar>
+			<columns>
+			
+			 <Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="File Name" />
+			</Column>
+				<Column width="50px"/>
+			</columns>
+			<items>
+				<ColumnListItem>
+				<cells>
+					<Text text="{FileName}"/>
+					<Button icon="sap-icon://delete" press="deleteRow" type="Reject"/>
+				</cells>
+			</ColumnListItem>
+			</items>
+			</Table>
+<!-- 		<Button -->
+<!-- 			text="Upload File" -->
+<!-- 			press="handleUploadPress"/> -->
+	</l:VerticalLayout>
+<!-- 								<Button ariaDescribedBy="defaultButtonDescription genericButtonDescription" press="onPress" text="Add"> -->
+<!-- 									<layoutData> -->
+<!-- 										<FlexItemData growFactor="1"/> -->
+<!-- 									</layoutData> -->
+<!-- 								</Button> -->
+							</content>
+						</Panel>
+					</content>
+				</Panel>
+			<!--	<Button icon="sap-icon://print" text="Print the document"/>
+				<Button icon="sap-icon://notes" text="Notes"/>
+				<Button icon="sap-icon://save" text="Save Changes"/>-->
+			</IconTabFilter>
+			<IconTabFilter text="FLOW">
+	
+			</IconTabFilter>
+			<IconTabFilter text="MESSAGES">
+				<Button icon="sap-icon://add" press="onAddMessageDialogPress" text="Add Message" id="idClick"/>
+				<Table id="idBudgetMessage" inset="false" items="{ path: '/ProductCollection', sorter: { path: 'Name' } }">
+					<columns>
+						<Column width="12em">
+							<Text text="Send Name"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Send Date"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Subject"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Message"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{SendName}"/>
+								<Text text="{SendDate}"/>
+								<Text text="{Subject}"/>
+								<Text text="{Message}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+	<OverflowToolbar>
+		<Button icon="sap-icon://paper-plane" text="Send" type="Accept" press="validateForm">
+		<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+		<Button icon="sap-icon://sys-cancel" text="Cancel" type="Reject">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+	</OverflowToolbar>
+</mvc:View>

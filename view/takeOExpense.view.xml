@@ -1,0 +1,311 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" controllerName="zn11_form.controller.takeOExpense" height="100%"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:commons="sap.ui.commons" class="sapUiSizeCompact"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns="sap.m" xmlns:m="sap.m" xmlns:unified="sap.ui.unified">
+	<tnt:ToolPage>
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button class="box-shadow" icon="sap-icon://menu2"  press="onSideNavButtonPress" type="Transparent">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSeparator/>
+				<!--<Image densityAware="false" src="img/n11.png" width="40px"></Image>-->
+				<ToolbarSpacer/>
+				<Text class="box-shadow" text="" wrapping="false"/>
+				<tnt:ToolHeaderUtilitySeparator/>
+				<ToolbarSpacer>
+					<layoutData>
+						<OverflowToolbarLayoutData minWidth="20px" priority="NeverOverflow"/>
+					</layoutData>
+				</ToolbarSpacer>
+				<Button press="handleUserNamePress" text="" type="Transparent" id="TakeOExpidButtonUserForm" icon="sap-icon://log">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation>
+				<tnt:item>
+					<tnt:NavigationList>
+						<tnt:NavigationListItem icon="sap-icon://home" select="btnHomeClick" text="Home"/>					
+					</tnt:NavigationList>
+				</tnt:item>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer>
+				<pages>
+					<Page id="TakeOidHomePageExpenseForm" showHeader="false">
+					<ScrollContainer height="100%" horizontal="false"  vertical="true">
+						<OverflowToolbar>
+				<Button icon="sap-icon://paper-plane" text="Approve" type="Accept" press="approveAction">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+		<Button icon="sap-icon://undo" text="Send Back" press="onSendBackBtn">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+		<Button icon="sap-icon://personnel-view" text="Take Opinion" press="onTakeOpinionBtn" type="Emphasized">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+		<Button icon="sap-icon://sys-cancel" text="Cancel" type="Reject" press="rejectAction">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+	</OverflowToolbar>
+	<IconTabBar class="sapUiResponsiveContentPadding" expanded="{device]/isNoPhone}">
+				<items>
+			<IconTabFilter text="DOCUMENT">
+				<Button icon="sap-icon://print" text="Print the document"/>
+				<Button icon="sap-icon://notes" text="Notes"/>
+				<Button icon="sap-icon://save" text="Save Changes"/>
+				<Panel class="sapUiSmallMargin panelContainer generalLabelFont generalLabelFontUi" expandable="false" width="95%">
+					<headerToolbar>
+						<Toolbar class="box-header">
+							<core:Icon class="size1 icon-shadow" color="#FFF" src="sap-icon://user-edit"/>
+							<ToolbarSeparator/>
+							<Title class="approvalText" text="Expense Approval"/>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<Panel class="panelBottom" id="TakeOExppanelFirs" width="auto">
+							<content>
+								<ImageContent class="imageLogo" src="img/logo-n11-large.png"></ImageContent>
+							</content>
+						</Panel>
+						<Panel class=" panelBottom" id="TakeOExppanelFirstContainer" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Form Details"/>		
+									<Button class="size1 icon-shadow" color="#FFF" icon="sap-icon://comment" press="displayComment" text=""/>
+									<!--<ImageContent class="imageLogo" src="img/n11_logo.png"></ImageContent>-->
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm emptySpanM="0" emptySpanXL="0" columnsM="2" columnsL="2" editable="true" emptySpanL="0" columnsXL="3" labelSpanL="4"
+										labelSpanM="4" labelSpanXL="4" layout="ResponsiveGridLayout" maxContainerCols="3">
+										<f:content>
+											<core:Title/>
+											<Label text="Request Owner:"/>
+											<Input class="inputForm" value="" id="TakeOExprequestOwner" enabled="false"/>
+											<Label text="Department:"/>
+											<Input class="inputForm" value="" id="TakeOExpdepartment" enabled="false"/>
+											<Label text="Title:"/>
+											<Input class="inputForm" value="" id="TakeOExptitle" enabled="false"/>
+											<core:Title/>
+											<Label text="Request Number:"/>
+											<Input class="inputForm" value="" id="TakeOExprequestNum" enabled="false"/>
+											<Label text="Request Date:"/>
+											<Input class="inputForm" value="" id="TakeOExprequestDate" enabled="false"/>
+											<HBox>
+												<Input class="inputForm" value="" id="TakeOExprequestTime" enabled="false"/>
+											</HBox>
+											<Label text="Status:"/>
+											<Input class="inputForm" placeholder="Form Status" id="TakeOExpstatus" enabled="false"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class=" panelBottom" id="TakeOExppanelSecondContainer" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Expense Details"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+											<Label text="Currency Type:"/>
+											<!--<Select width="100%" id="ManExpCurrencyType" change="selectChangeCur" enabled="false">
+											<items>
+													<core:Item text="" key=""/>
+													<core:Item text="TRY" key="TRY"/>
+													<core:Item text="USD" key="USD"/>
+													<core:Item text="EUR" key="EUR"/>
+													<core:Item text="GBP" key="GBP"/>
+											</items>
+										</Select>  -->
+										<Input class="inputForm" value="" id="TakeOExpCurrencyType" enabled="false"/>
+											<HBox>
+												<Input class="inputForm" value="" id="TakeOExpCurrency" enabled="false"/>
+											</HBox>
+											<HBox>
+												<CheckBox text="Related Budget No" id="TakeOcheckRelNo" select="selectCheckRel" visible="false" enabled="false"/>
+											</HBox>												
+											<Label text="Expense List:" id="TakeOExpList1" visible="true"/>
+											<Table id="TakeOexpListTbl" inset="false" items="{ path: '/results'}" visible="true">
+												<columns>								
+													<Column width="6rem">
+														<Text text="Date"/>
+													</Column>
+													<Column demandPopin="true" minScreenWidth="Tablet" width="6rem">
+														<Text text="Description"/>
+													</Column>
+													<Column demandPopin="true" minScreenWidth="Tablet" width="6rem">
+														<Text text="Amount"/>
+													</Column>											
+													<Column demandPopin="true" minScreenWidth="Tablet" width="3rem">
+														<Text text="Tax"/>
+													</Column>
+													<Column  demandPopin="true" minScreenWidth="Tablet" width="9rem">
+														<Text text="Related Budget No"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>
+															<Text text="{Date}"/>
+															<Text text="{Description}"/>
+															<Text text="{Amount}"/>
+															<Text text="{TaxCategory}"/>
+															<Text text="{RelatedBudgetNumber}"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+											<Label text="Expense List:" id="TakeOExpList2" visible="false"/>
+											<Table id="TakeOexpListTbl2" inset="false" items="{ path: '/results'}" visible="false">
+												<columns>								
+													<Column width="6rem">
+														<Text text="Date"/>
+													</Column>
+													<Column demandPopin="true" minScreenWidth="Tablet" width="6rem">
+														<Text text="Description"/>
+													</Column>
+													<Column demandPopin="true" minScreenWidth="Tablet" width="6rem">
+														<Text text="Amount"/>
+													</Column>											
+													<Column demandPopin="true" minScreenWidth="Tablet" width="3rem">
+														<Text text="Tax"/>
+													</Column>
+													<Column  demandPopin="true" minScreenWidth="Tablet" width="9rem">
+														<Text text="Related Budget No"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>									
+															<Input class="inputForm" value="{path: 'Date'}" id="TakeODateId2" enabled="true"/>
+															<Input class="inputForm" value="{path: 'Description'}" id="TakeODescId2" enabled="true" />
+															<Input class="inputForm" value="{path: 'TaxCategory'}" id="TakeOTaxId2" enabled="true"/>
+															<Input text="{RelatedBudgetNumber}"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+											<Label text=""/>
+											<Button ariaDescribedBy="defaultButtonDescription genericButtonDescription" press="onAddExpList" text="Add" width="20%" visible="false">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<HBox>
+												<Label text="Total Amount:" class="labelPay"/>
+												<Input class="inputForm" value="" id="TakeOExpTotalAmount" enabled="false"/>
+											</HBox>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class=" panelBottom" id="TakeOExppanelSecondPlusContainer" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Expense Type"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+											<VBox>
+												<Label class="textLabel" text="Expense is Related With:"/>
+												<RadioButtonGroup columns="2" id="TakeOExpRelWith"  select="selectFormType">
+													<buttons>
+														<RadioButton id="TakeOExpRel-1" text="Travel" enabled="false"/>
+														<RadioButton id="TakeOExpRel-2" text="Other" enabled="false"/>
+													</buttons>
+												</RadioButtonGroup>
+												<Label class="textLabel" text="Expense was paid by:"/>
+												<RadioButtonGroup columns="2" id="TakeOExpPaidBy"  select="selectFormTypePaid">
+													<buttons>
+														<RadioButton id="TakeOExpPaid-1" text="Corporate Credit Card" enabled="false"/>
+														<RadioButton id="TakeOExpPaid-2" text="Private Credit Card or Cash etc." enabled="false"/>
+													</buttons>
+												</RadioButtonGroup>
+											</VBox>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+					</content>
+				</Panel>
+			</IconTabFilter>
+			<IconTabFilter text="FLOW">
+				<List headerText="A List" showSeparators="Inner"></List>
+			</IconTabFilter>
+			<IconTabFilter text="MESSAGES">
+				<Button icon="sap-icon://add" press="onAddMessageDialogPress" text="Add Message" id="ReidClickExpense"/>
+				<Table id="ReidExpenseMessage" inset="false" items="{ path: '/ProductCollection', sorter: { path: 'Name' } }">
+					<columns>
+						<Column width="12em">
+							<Text text="Send Name"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Send Date"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Subject"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Message"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{SendName}"/>
+								<Text text="{SendDate}"/>
+								<Text text="{Subject}"/>
+								<Text text="{Message}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</IconTabFilter>
+		</items>
+		
+	</IconTabBar>
+	<OverflowToolbar>
+			<Button icon="sap-icon://paper-plane" text="Approve" type="Accept" press="approveAction">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+		<Button icon="sap-icon://undo" text="Send Back" press="onSendBackBtn">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+		<Button icon="sap-icon://personnel-view" text="Take Opinion" press="onTakeOpinionBtn" type="Emphasized">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+		<Button icon="sap-icon://sys-cancel" text="Cancel" type="Reject" press="rejectAction">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+	</OverflowToolbar>
+						</ScrollContainer>
+					</Page>
+				
+					<ScrollContainer height="100%" horizontal="false"  vertical="true">						
+					</ScrollContainer>
+
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>	
+		
+		
+		
+</mvc:View>

@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="handleConfirm">
+		<sortItems>
+			<ViewSettingsItem text="Request Number" key="BAFNO" selected="true"/>
+			<ViewSettingsItem text="Request Date" key="RQDAT"/>
+			<ViewSettingsItem text="Type" key="TYPEE"/>
+			<ViewSettingsItem text="Status" key="STATU"/>
+		</sortItems>
+		<groupItems>
+			<ViewSettingsItem text="Request Date" key="RQDAT"/>
+			<ViewSettingsItem text="Type" key="TYPEE"/>
+		</groupItems>
+		<filterItems>
+<!-- 			<ViewSettingsFilterItem text="Tamamlanma" key="Complete" multiSelect="false"> -->
+<!-- 				<items> -->
+<!-- 					<ViewSettingsItem text="Tamamlandı" key="Complete___Contains___true___"/> -->
+<!-- 					<ViewSettingsItem text="Tamamlanmadı" key="Complete___Contains___false___"/> -->
+<!-- 					<ViewSettingsItem text="Hepsi" key="Complete___Contains______"/> -->
+<!-- 				</items> -->
+<!-- 			</ViewSettingsFilterItem> -->
+<!-- 			<ViewSettingsFilterItem text="İptal" key="Cancel" multiSelect="false"> -->
+<!-- 				<items> -->
+<!-- 					<ViewSettingsItem text="İptal Edildi" key="Cancel___Contains___true___"/> -->
+<!-- 					<ViewSettingsItem text="İptal Edilmedi" key="Cancel___Contains___false___"/> -->
+<!-- 					<ViewSettingsItem text="Hepsi" key="Cancel___Contains______"/> -->
+<!-- 				</items> -->
+<!-- 			</ViewSettingsFilterItem> -->
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

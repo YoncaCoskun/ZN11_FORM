@@ -1,0 +1,275 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" controllerName="zn11_form.controller.Expense" height="100%"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:commons="sap.ui.commons" class="sapUiSizeCompact"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns="sap.m">
+	<OverflowToolbar>
+		<Button icon="sap-icon://paper-plane" text="Send" type="Accept" press="sendAction">
+		<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+		<Button icon="sap-icon://sys-cancel" text="Cancel" type="Reject">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+	</OverflowToolbar>
+	<IconTabBar class="sapUiResponsiveContentPadding" expanded="{device]/isNoPhone}">
+		<items>
+			<IconTabFilter text="DOCUMENT">
+				<Button icon="sap-icon://print" text="Print the document"/>
+				<Button icon="sap-icon://notes" text="Notes"/>
+				<Button icon="sap-icon://save" text="Save Changes"/>
+				<Panel class="sapUiSmallMargin panelContainer generalLabelFont generalLabelFontUi" expandable="false" width="95%">
+					<headerToolbar>
+						<Toolbar class="box-header">
+							<core:Icon class="size1 icon-shadow" color="#FFF" src="sap-icon://user-edit"/>
+							<ToolbarSeparator/>
+							<Title class="approvalText" text="Expense Approval"/>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<Panel class="panelBottom" id="panelFirs" width="auto">
+							<content>
+								<ImageContent class="imageLogo" src="img/logo-n11-large.png"></ImageContent>
+							</content>
+						</Panel>
+						<Panel class=" panelBottom" id="panelFirstContainer" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Form Details"/>
+									<!--<ImageContent class="imageLogo" src="img/n11_logo.png"></ImageContent>-->
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm emptySpanM="0" emptySpanXL="0" columnsM="2" columnsL="2" editable="true" emptySpanL="0" columnsXL="3" labelSpanL="4"
+										labelSpanM="4" labelSpanXL="4" layout="ResponsiveGridLayout" maxContainerCols="3">
+										<f:content>
+											<core:Title/>
+											<Label text="Request Owner:"/>
+											<Input class="inputForm" value="" id="ExprequestOwner" enabled="false"/>
+											<Label text="Department:"/>
+											<Input class="inputForm" value="" id="Expdepartment" enabled="false"/>
+											<Label text="Title:"/>
+											<Input class="inputForm" value="" id="Exptitle" enabled="false"/>
+											<core:Title/>
+											<Label text="Request Number:"/>
+											<Input class="inputForm" value="" id="ExprequestNum" enabled="false"/>
+											<Label text="Request Date:"/>
+											<Input class="inputForm" value="" id="ExprequestDate" enabled="false"/>
+											<HBox>
+												<Input class="inputForm" value="" id="ExprequestTime" enabled="false"/>
+											</HBox>
+											<Label text="Status:"/>
+											<Input class="inputForm" placeholder="Form Status" id="Expstatus" enabled="false"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class=" panelBottom" id="panelSecondContainer" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Expense Details"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+											<Label text="Currency Type:"/>
+											<Select width="100%" id="ExpCurrencyType" change="selectChangeCur">
+											<items>
+													<core:Item text="" key=""/>
+													<core:Item text="TRY" key="TRY"/>
+													<core:Item text="USD" key="USD"/>
+													<core:Item text="EUR" key="EUR"/>
+													<core:Item text="GBP" key="GBP"/>
+											</items>
+										</Select>
+											<HBox>
+												<Input class="inputForm" value="" id="ExpCurrency" enabled="false"/>
+											</HBox>
+											<HBox>
+												<CheckBox text="Related Budget No" id="checkRelNo" select="selectCheckRel" visible="false"/>
+											</HBox>												
+											<Label text="Expense List:"/>
+											<Table id="expListTbl" inset="false" items="{ path: '/ET_HEADERSet', sorter: { path: 'Name' } }">
+												<columns>								
+													<Column width="6rem">
+														<Text text="Date"/>
+													</Column>
+													<Column demandPopin="true" minScreenWidth="Tablet" width="6rem">
+														<Text text="Description"/>
+													</Column>
+													<Column demandPopin="true" minScreenWidth="Tablet" width="6rem">
+														<Text text="Amount"/>
+													</Column>											
+													<Column demandPopin="true" minScreenWidth="Tablet" width="3rem">
+														<Text text="Tax"/>
+													</Column>
+													<Column  demandPopin="true" minScreenWidth="Tablet" width="9rem">
+														<Text text="Related Budget No"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>
+															<Text text=""/>
+															<Text text=""/>
+															<Text text=""/>
+															<Text text=""/>
+															<Text text=""/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+											<Label text=""/>
+											<Button ariaDescribedBy="defaultButtonDescription genericButtonDescription" press="onAddExpList" text="Add" width="20%">
+												<layoutData>
+													<FlexItemData growFactor="1"/>
+												</layoutData>
+											</Button>
+											<HBox>
+												<Label text="Total Amount:" class="labelPay"/>
+												<Input class="inputForm" value="" id="ExpTotalAmount"/>
+											</HBox>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class=" panelBottom" id="panelSecondPlusContainer" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Expense Type"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<VBox class="sapUiSmallMargin">
+									<f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+										<f:content>
+											<VBox>
+												<Label class="textLabel" text="Expense is Related With:"/>
+												<RadioButtonGroup columns="2" id="ExpRelWith"  select="selectFormType">
+													<buttons>
+														<RadioButton id="ExpRel-1" text="Travel"/>
+														<RadioButton id="ExpRel-2" text="Other"/>
+													</buttons>
+												</RadioButtonGroup>
+												<Label class="textLabel" text="Expense was paid by:"/>
+												<RadioButtonGroup columns="2" id="ExpPaidBy"  select="selectFormTypePaid">
+													<buttons>
+														<RadioButton id="ExpPaid-1" text="Corporate Credit Card"/>
+														<RadioButton id="ExpPaid-2" text="Private Credit Card or Cash etc."/>
+													</buttons>
+												</RadioButtonGroup>
+											</VBox>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel class="panelBottom" id="panelFourthContainerExpense" width="auto">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title class="boldText" text="Attachment"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<l:VerticalLayout>
+		
+			
+			<Table id="insExpense" items="{/}">
+			<headerToolbar>
+			<Toolbar>
+			<ToolbarSpacer/>
+			<u:FileUploader
+			id="fileuploadExpense"
+			tooltip="Upload your file to the local server"
+			uploadComplete="handleUploadComplete"
+			change="handleValueChange"
+			style="Emphasized"
+			placeholder="Choose a file for Upload...">
+				<u:parameters>
+					<u:FileUploaderParameter
+						name="param1"
+						value="Foo"/>
+					<u:FileUploaderParameter
+						name="param2"
+						value="bar"/>
+				</u:parameters>
+				<u:headerParameters>
+					<u:FileUploaderParameter
+						name="headerParam1"
+						value="Foo"/>
+					<u:FileUploaderParameter
+						name="headerParam2"
+						value="bar"/>
+				</u:headerParameters>
+			</u:FileUploader>
+			</Toolbar>
+		</headerToolbar>
+			<columns>
+			
+			 <Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="File Name" />
+			</Column>
+				<Column width="50px"/>
+			</columns>
+			<items>
+				<ColumnListItem>
+				<cells>
+					<Text text="{FileName}"/>
+					<Button icon="sap-icon://delete" press="deleteRow" type="Reject"/>
+				</cells>
+			</ColumnListItem>
+			</items>
+			</Table>
+	</l:VerticalLayout>
+							</content>
+						</Panel>
+					</content>
+				</Panel>
+			</IconTabFilter>
+			<IconTabFilter text="FLOW">
+				<List headerText="A List" showSeparators="Inner"></List>
+			</IconTabFilter>
+			<IconTabFilter text="MESSAGES">
+				<Button icon="sap-icon://add" press="onAddMessageDialogPress" text="Add Message" id="idClickExpense"/>
+				<Table id="idExpenseMessage" inset="false" items="{ path: '/ProductCollection', sorter: { path: 'Name' } }">
+					<columns>
+						<Column width="12em">
+							<Text text="Send Name"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Send Date"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Subject"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Message"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{SendName}"/>
+								<Text text="{SendDate}"/>
+								<Text text="{Subject}"/>
+								<Text text="{Message}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+	<OverflowToolbar>
+		<Button icon="sap-icon://paper-plane" text="Send" type="Accept" press="sendAction">
+		<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+		<Button icon="sap-icon://sys-cancel" text="Cancel" type="Reject">
+			<layoutData><OverflowToolbarLayoutData moveToOverflow="false"/></layoutData>
+		</Button>
+	</OverflowToolbar>
+</mvc:View>
